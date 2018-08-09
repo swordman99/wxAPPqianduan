@@ -1,0 +1,301 @@
+page
+{
+	background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532499522846&di=74dd8189d8661f3e3719971018b3d8c8&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170108%2F9023941c26e844ff9381461af1a0347f_th.jpg');
+	background-size: cover;
+}
+/*-------------------------------------------------------------------------------*/
+.topcolumn
+{
+	width: 750rpx;
+	height: 200rpx;
+	background-color: rgb(8, 8, 59);
+	opacity: 0.7;
+	top: 0;
+	right: 0;
+}
+.userinfo-avatar
+{
+	position: fixed;
+	display: block;
+	width: 100rpx;
+	height: 100rpx;
+	margin: 0rpx;
+	left: 50rpx;
+	top: 50rpx;
+}
+.userinfo-nickname
+{
+	position: fixed;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	font-size: 32rpx;
+	left: 170rpx;
+	top: 25rpx;
+}
+.dot
+{
+	position: fixed;
+	background-color: rgb(255, 255, 0);
+	width: 32rpx;
+	height: 32rpx;
+	left: 170rpx;
+	top: 71rpx;
+	border-radius: 50%;
+	border-width: 0;
+}
+.number
+{
+	position: fixed;
+	left: 210rpx;
+	top: 67rpx;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	font-size: 32rpx; 	
+}
+.rank
+{
+	position: fixed;
+	left: 170rpx;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	font-size: 30rpx;
+}
+#globalRank
+{
+	top: 110rpx;
+}
+#schoolRank
+{
+  	top:148rpx;
+}
+.begin
+{
+	position: fixed;
+	left: 450rpx;
+	top: 30rpx;
+	width: 220rpx;
+	height: 70rpx;
+	opacity: 0.6;
+	background-color: rgb(184, 215, 236);
+	border-radius: 20rpx;
+	color: rgb(8, 8, 59);
+	font-weight: 800;
+	font-size: 40rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0rpx 0rpx 80rpx 0rpx rgb(0,0,5);
+}
+.log
+{
+	position: fixed;
+	left: 450rpx;
+	top: 110rpx;
+	width: 220rpx;
+	height: 70rpx;
+	opacity: 0.6;
+ 	padding: 0;
+	background-color: rgb(184, 215, 236);
+	border-radius: 20rpx;
+	color: rgb(8, 8, 59);
+	font-weight: 800;
+	font-size: 40rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0rpx 0rpx 80rpx 0rpx rgb(0,0,5);
+}
+.button-hover
+{
+	opacity: 1;
+}
+.openAnnouncement
+{
+	position: fixed;
+	left: 690rpx;
+	top: 20rpx;
+	width: 80rpx;
+	height: 30rpx;
+	opacity: 0.8;
+	padding: 2rpx 12rpx;
+	border-width: 0rpx;
+	background-color: rgb(184, 215, 236);
+	border-radius: 20rpx;
+	color: rgb(8, 8, 59);
+	font-size: 20rpx;
+	vertical-align: middle;
+	text-align: left;
+}
+/*-------------------------------------------------------------------------------*/
+.rankingListPage
+{
+	position: fixed;
+	left: 50rpx;
+	top: 210rpx;
+	width: 650rpx;
+	height: 1300rpx;
+	opacity: 0.8;
+	background-color: rgb(0,0,0);
+	box-shadow: 0rpx 0rpx 40rpx 0rpx rgb(0,0,0);
+}
+.rankOpen
+{
+	position: fixed;
+	top: 230rpx;
+	height: 70rpx;
+	width: 175rpx;
+	color: white;
+	font-weight: 600;
+	font-size: 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#global
+{
+	left: 190rpx;
+	border-top-left-radius: 100rpx;
+	border-bottom-left-radius: 100rpx;
+}
+#friend
+{
+	left: 365rpx;
+	border-top-right-radius: 100rpx;
+	border-bottom-right-radius: 100rpx;	
+}
+.rankingList
+{
+	position: fixed;
+	top: 320rpx;
+	left: 100rpx;
+	width: 550rpx;
+	height: 1000rpx;
+	background-color: rgb(0,0,0);
+	color: rgb(255,255,255);
+	font-weight: 800;
+	font-size: 40rpx;
+}
+/*-------------------------------------------------------------------------------*/
+.announcementPage
+{
+	top:0;
+	right:0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgb(255, 255, 255);
+	opacity: 0.5;
+}
+.announcement
+{
+	position: fixed;
+	left: 50rpx;
+	top: 150rpx;
+	width: 610rpx;
+	height: 800rpx;
+	padding: 20rpx;
+	background-color: rgb(8, 8, 59);
+	opacity: 0.8;
+	border-radius: 30rpx;
+	text-align: center;
+	box-shadow: 20rpx 20rpx 50rpx 0rpx rgb(0,0,0);	
+	}
+.title
+{
+	color:white;
+	font-size: 80rpx;
+	font-weight: bold;
+	text-align: center;
+}
+.announcementContent
+{
+	position: fixed;
+	top: 300rpx;
+	left: 120rpx;
+	width: 510rpx;
+	height: 600rpx;
+}
+.content
+{
+	color: white;
+	font-size: 30rpx;
+  	text-align: left;
+}
+.line
+{
+ 	 padding: 15rpx 0;
+}
+/*-------------------------------------------------------------------------------*/
+#logPage
+{
+  	height: 600rpx;
+}
+.logPeople
+{
+	position: fixed;
+	left: 240rpx;
+	width: 270rpx;
+	height: 70rpx;
+	opacity: 0.6;
+ 	padding: 0;
+	background-color: rgb(184, 215, 236);
+	border-radius: 20rpx;
+	color: rgb(8, 8, 59);
+	font-weight: 800;
+	font-size: 40rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 10rpx 10rpx 20rpx 10rpx rgb(0,0,5);
+}
+#logPage
+{
+  	height: 600rpx;
+}
+#student
+{
+	top: 350rpx;
+}
+#other
+{
+	top: 450rpx;
+}
+.inputs
+{
+	position: fixed;
+	background-color: white;
+	height: 60rpx;
+	width: 490rpx;
+	padding: 0;
+	margin: 0;
+	left: 130rpx;
+	border-radius: 20rpx;
+	border-width: 0rpx;
+}
+#name
+{
+	top: 300rpx;
+}
+#phone
+{
+ 	top:390rpx;
+}
+#number
+{
+ 	top:480rpx;
+}
+#submit
+{
+	top:580rpx;
+	left:290rpx;
+	width: 170rpx;
+}
+.alert
+{
+	position: fixed;
+	top:230rpx;
+	left:100rpx;
+	color: rgb(252, 79, 11);
+	font-weight: bold;
+	font-size: 35rpx;
+}

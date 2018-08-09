@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/home/home",
+    "pages/index/match/match",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"bold",
+    "navigationBarBackgroundColor": "#08083b",
+    "navigationBarTitleText": "Jasper实验室",
+    "navigationBarTextStyle":"white"
+  }
+}

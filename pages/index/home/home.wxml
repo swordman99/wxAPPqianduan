@@ -1,0 +1,93 @@
+<!-- 顶栏 -->
+<view class="topcolumn">
+	<!--用户信息-->
+	<view class="userInfo">
+		<view class="userinfo-avatar">
+			<open-data type="userAvatarUrl"></open-data>
+		</view>
+		<view class="userinfo-nickname">
+			<open-data type="userNickName"></open-data>
+		</view>
+	</view>
+	<!--积分排名-->
+	<view class="integral">
+		<view class="dot"></view>
+		<view class="number"> X {{number}}</view>
+		<view class="rank"> 全国排名： {{rank[0]}}/{{init.sum[0]}}</view>
+		<view class="rank"> 全校排名： {{rank[1]}}/{{init.sum[1]}}</view>
+	</view>
+	<!--按钮-->
+	<navigator open-type='redirect' url='../match/match' bind:tap="begin" class="begin" hover-class="button-hover" hover-stay-time="2000">开始挑战</navigator>
+	<view wx:if="{{flag.loged}}" class="log">登陆成功</view>
+	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击登录</button>
+	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
+</view>
+
+<!-- 排行榜 -->
+<view class="rankingListPage">
+	<!--开关-->
+	<view catchtap="globalOpen" class="rankOpen" id="global" style="background-color:{{color[0]}}">全球排行榜</view>
+	<view catchtap="friendOpen" class="rankOpen" id="friend" style="background-color:{{color[1]}}">全校排行榜</view>
+	<!--排行榜内容-->
+	<block wx:if="{{flag.global}}">
+		<scroll-view scroll-y='true' scroll-top='0' id="global-rank" class="rankingList">
+			<view wx:for="{{init.lists[0]}}">
+				{{index + 1}}
+				{{item[1]}}
+				{{item[2]}}
+			</view>
+		</scroll-view>
+	</block>
+	<block wx:else>
+		<scroll-view scroll-y='true' scroll-top='0' id="friend-rank" class="rankingList">
+			<view wx:for="{{init.lists[1]}}">
+				{{index + 1}}
+				{{item[1]}}
+				{{item[2]}}
+			</view>
+		</scroll-view>
+	</block>
+</view>
+
+<!-- 公告栏 -->
+<view wx:if="{{flag.announcement}}">
+	<view class="announcementPage" bindtap='closeAnnouncement'></view>
+	<view class="announcement">
+		<text class="title">公告</text>
+		<scroll-view scroll-y='true' scroll-top='0' id="global-rank" class="announcementContent">
+			<view class="content" wx:for="{{init.content}}">
+				<view class="line">{{index+1}}. {{item}}</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>
+
+<!--登陆栏-->
+<view wx:if="{{flag.log}}">
+	<view class="announcementPage" bindtap='closeAnnouncement'></view>
+	<view class="announcement" id='logPage'>
+		<!--选择栏-->
+		<block wx:if="{{flag.choose == 0}}">
+			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logStudent" class="logPeople" id="student">校内人员登录</view>
+			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logOther" class="logPeople" id="other">校外人员登录</view>
+		</block>
+		<!--校内栏-->
+		<block wx:elif="{{flag.choose == 1}}">
+			<form bindsubmit="submitData">
+				<input placeholder="真实姓名" class="inputs" id="name" name="name">{{name}}</input>
+				<input placeholder="手机号" type="number" class="inputs" id="phone" name='phone'>{{phone}}</input>
+				<input placeholder="学号" type="number" class="inputs" id="number" name='number'>{{stuentNumber}}</input>
+				<button form-type="submit" class='log' id='submit'>确定</button>	
+			</form>
+		</block>
+		<!--校外栏-->
+		<block wx:else>
+			<form bindsubmit="submitData">
+				<input placeholder="手机号" type="number" class="inputs" id="phone" name='phone'>{{phone}}</input>
+				<button form-type="submit" class='log' id='submit'>确定</button>
+			</form>
+		</block>
+		<!--提示语-->
+		<view wx:if="{{flag.alert}}" class='alert'>您的信息与注册时不匹配，请再次填写！</view>
+	</view>
+</view>

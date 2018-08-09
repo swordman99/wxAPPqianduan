@@ -1,0 +1,18 @@
+page
+{
+	background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532588487563&di=f2f97280c736f7a518fb40bce7646415&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D604266744%2C1087295599%26fm%3D214%26gp%3D0.jpg');
+	background-size: cover;
+}
+.background
+{
+	position: fixed;
+	left: 30rpx;
+	top: 5%;
+	width: 690rpx;
+	height: 90%;
+	background-color: rgb(8, 8, 59);
+	opacity: 0.8;
+	border-radius: 80rpx;
+	text-align: center;
+	box-shadow: 20rpx 20rpx 50rpx 0rpx rgb(0,0,0);	
+}

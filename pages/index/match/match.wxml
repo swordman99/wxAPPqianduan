@@ -1,0 +1,6 @@
+<block>
+	<view class="background"></view>
+  <view class='secondCanvasPage'>
+    <canvas canvas-id="secondCanvas" class='secondCanvasPage'></canvas>
+  </view>
+</block>
