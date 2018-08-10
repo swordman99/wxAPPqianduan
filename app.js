@@ -9,6 +9,15 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'https://www.pkusess.club/openid',
+          //url: 'http://127.0.0.1:5000/openid',
+          method: 'POST',
+          data: {'code': res.code},
+          success: (res) =>{
+            this.globalData.openid = res.data
+          }
+        })
       }
     })
     // 获取用户信息
@@ -19,7 +28,6 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              console.log
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -33,6 +41,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: {},
+    openid: ''
   }
 })

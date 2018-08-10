@@ -15,7 +15,8 @@ Page({
   onLoad: function(){
     var that = this;
     wx.request({
-      url:'http://127.0.0.1:5000/home',
+      url:'https://www.pkusess.club/home',
+      //url: 'http://127.0.0.1:5000/home',
       header: {
         'Content-Type': 'application/json'
       },
@@ -57,8 +58,8 @@ Page({
   },
   //打开登陆栏
   log: function(e) {
-    const appInstance = getApp();
-    appInstance.globalData.userInfo = e.detail.userInfo;
+//    const appInstance = getApp();
+//    appInstance.globalData.userInfo = e.detail.userInfo;
     this.setData({'flag.log': true})
   },
   //打开校内登陆栏
@@ -72,21 +73,26 @@ Page({
   //点击确认，发送登录数据
   submitData: function(e) {
     var that = this;
-    const appInstance = getApp();
+    const app = getApp()
+    var userInfo = app.globalData.userInfo;
+    var openid = app.globalData.openid;
+    //console.log(userInfo)
     wx.request({
-      url: 'http://127.0.0.1:5000/login',
+      url: 'https://www.pkusess.club/login',
+      //url: 'http://127.0.0.1:5000/login',
       method: 'POST',
       data: {
-        'userInfo': appInstance.globalData.userInfo,
-        'type': 'flag.choose' - 1,
-        'value': { name: that.data.name, phone: that.data.phone, stuentNumber: that.data.stuentNumber},
+        'userInfo': userInfo,
+        'openID': openid,
+        'type': that.data.flag['choose'] - 1,
+        'value': e.detail.value
       },
       header: {
         'Content-Type': 'application/json'
       },
       success: (res) => {
         if(res.data.isMatch == true){
-          appInstance.globalData.number = res.data.number;
+          app.globalData.number = res.data.number;
           that.setData({
             'flag.announcement': false,
             'flag.log': false,
