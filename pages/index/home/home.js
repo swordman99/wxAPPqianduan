@@ -17,8 +17,8 @@ Page({
   onLoad: function () {
     var that = this;
     wx.request({
-      //url: 'https://www.pkusess.club/openid',
-      url: 'http://127.0.0.1:5000/openid',
+      url: 'https://www.pkusess.club/openid',
+      //url: 'http://127.0.0.1:5000/openid',
       method: 'POST',
       data: { 'code': app.globalData.code },
       success: (res) => {
@@ -26,8 +26,8 @@ Page({
       }
     })
     wx.request({
-      //url: 'https://www.pkusess.club/home',
-      url: 'http://127.0.0.1:5000/home',
+      url: 'https://www.pkusess.club/home',
+      //url: 'http://127.0.0.1:5000/home',
       method: 'POST',
       data:{ openID: app.globalData.openid },
       header: {
@@ -44,8 +44,8 @@ Page({
     });
     if(app.globalData.loged){
       wx.request({
-        //url: 'https://www.pkusess.club/loginsuccess',
-        url: 'http://127.0.0.1:5000/loginsuccess',
+        url: 'https://www.pkusess.club/loginsuccess',
+        //url: 'http://127.0.0.1:5000/loginsuccess',
         data: {
           openID: app.globalData.openid
         },
@@ -119,8 +119,8 @@ Page({
     var userInfo = app.globalData.userInfo;
     var openid = app.globalData.openid;
     wx.request({
-      //url: 'https://www.pkusess.club/login',
-      url: 'http://127.0.0.1:5000/login',
+      url: 'https://www.pkusess.club/login',
+      //url: 'http://127.0.0.1:5000/login',
       method: 'POST',
       data: {
         'userInfo': userInfo,
