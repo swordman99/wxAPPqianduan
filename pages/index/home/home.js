@@ -1,37 +1,40 @@
+const app = getApp()
 Page({
   //数据
   data: {
+    alert2: false,
     name: '',
     phone: '',
     stuentNumber: '',
     currentUser: [],
     number: 0,
-    init: {sum:[,'---'], lists:[[],[]], content:[]},
+    init: { sum: [, '---'], lists: [[], []], content: [] },
     rank: ['---', '---'],
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
-    flag: {global: true, announcement:false, log:false, choose:0, loged:false, alert:false}
+    flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false }
   },
   //初始登录数据
-  onLoad: function(){
+  onLoad: function () {
+    console.log(app.globalData.userInfo);
     var that = this;
     wx.request({
-      url:'https://www.pkusess.club/home',
-      //url: 'http://127.0.0.1:5000/home',
+      //url: 'https://www.pkusess.club/home',
+      url: 'http://127.0.0.1:5000/home',
       header: {
         'Content-Type': 'application/json'
       },
-      success: function(res){
-        that.setData({init: res.data.init})
+      success: function (res) {
+        that.setData({ init: res.data.init })
       }
     })
   },
-  //开始游戏
-  begin: function () {
-    this.setData({ rank: '--' })
+  //提示尚未登录
+  alert2: function () {
+    this.setData({ alert2: true })
   },
   //打开公告栏或登陆栏
   openAnnouncement: function () {
-    this.setData({'flag.announcement': true})
+    this.setData({ 'flag.announcement': true })
   },
   //关闭公告栏或登陆栏
   closeAnnouncement: function () {
@@ -39,8 +42,9 @@ Page({
       'flag.announcement': false,
       'flag.log': false,
       'flag.choose': 0,
-      'flag.alert': false
-      })
+      'flag.alert': false,
+      alert2: false
+    })
   },
   //转换为全球排行榜
   globalOpen: function () {
@@ -57,29 +61,30 @@ Page({
     })
   },
   //打开登陆栏
-  log: function(e) {
-//    const appInstance = getApp();
-//    appInstance.globalData.userInfo = e.detail.userInfo;
-    this.setData({'flag.log': true})
+  log: function (e) {
+    this.setData({ 'flag.log': true })
   },
   //打开校内登陆栏
-  logStudent: function() {
-    this.setData({'flag.choose': 1})
+  logStudent: function () {
+    this.setData({ 'flag.choose': 1 })
   },
   //打开校外登陆栏
-  logOther: function() {
-    this.setData({'flag.choose': 2})
+  logOther: function () {
+    this.setData({ 'flag.choose': 2 })
   },
-  //点击确认，发送登录数据
-  submitData: function(e) {
+  //获取用户信息
+  onGotUserInfo: function (e) {
+    console.log(e.detail.userInfo);
+    app.globalData.userInfo = e.detail.userInfo
+  },
+  //点击确认
+  submitData: function (e) {
     var that = this;
-    const app = getApp()
     var userInfo = app.globalData.userInfo;
     var openid = app.globalData.openid;
-    //console.log(userInfo)
     wx.request({
-      url: 'https://www.pkusess.club/login',
-      //url: 'http://127.0.0.1:5000/login',
+      //url: 'https://www.pkusess.club/login',
+      url: 'http://127.0.0.1:5000/login',
       method: 'POST',
       data: {
         'userInfo': userInfo,
@@ -91,19 +96,19 @@ Page({
         'Content-Type': 'application/json'
       },
       success: (res) => {
-        if(res.data.isMatch == true){
-          app.globalData.number = res.data.number;
+        if (res.data.isMatch == true) {
           that.setData({
             'flag.announcement': false,
             'flag.log': false,
             'flag.choose': 0,
             'flag.alert': false,
+            'flag.loged': true,
             rank: res.data.rank,
-            number: res.data.number
+            number: res.data.number,
           })
         }
-        else{
-          that.setData({'flag.alert': true})
+        else {
+          that.setData({ 'flag.alert': true })
           //修改排行榜效果
         }
       }

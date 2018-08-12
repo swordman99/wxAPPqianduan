@@ -13,16 +13,23 @@
 	<view class="integral">
 		<view class="dot"></view>
 		<view class="number"> X {{number}}</view>
-		<view class="rank"> 全国排名： {{rank[0]}}/{{init.sum[0]}}</view>
-		<view class="rank"> 全校排名： {{rank[1]}}/{{init.sum[1]}}</view>
+		<view class="rank" id='globalRank'> 全国排名： {{rank[0]}}/{{init.sum[0]}}</view>
+		<view class="rank" id='schoolRank'> 全校排名： {{rank[1]}}/{{init.sum[1]}}</view>
 	</view>
 	<!--按钮-->
-	<navigator open-type='redirect' url='../match/match' bind:tap="begin" class="begin" hover-class="button-hover" hover-stay-time="2000">开始挑战</navigator>
+  <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
+	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
 	<view wx:if="{{flag.loged}}" class="log">登陆成功</view>
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击登录</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
 </view>
-
+<!--尚未登录提示栏-->
+<view wx:if="{{alert2}}">
+	<view class="announcementPage" bindtap='closeAnnouncement'></view>
+	<view class="announcement" id='alert2'>
+		<text class='alert2content'>您尚未登录\n请先登录再答题</text>
+  </view>
+</view>
 <!-- 排行榜 -->
 <view class="rankingListPage">
 	<!--开关-->
@@ -31,7 +38,7 @@
 	<!--排行榜内容-->
 	<block wx:if="{{flag.global}}">
 		<scroll-view scroll-y='true' scroll-top='0' id="global-rank" class="rankingList">
-			<view wx:for="{{init.lists[0]}}">
+			<view wx:for="{{init.lists[0]}}" wx:key='*this'>
 				{{index + 1}}
 				{{item[1]}}
 				{{item[2]}}
@@ -40,7 +47,7 @@
 	</block>
 	<block wx:else>
 		<scroll-view scroll-y='true' scroll-top='0' id="friend-rank" class="rankingList">
-			<view wx:for="{{init.lists[1]}}">
+			<view wx:for="{{init.lists[1]}}" wx:key='*this'>
 				{{index + 1}}
 				{{item[1]}}
 				{{item[2]}}
