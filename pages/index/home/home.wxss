@@ -127,6 +127,22 @@ page
 	text-align: left;
 }
 /*-------------------------------------------------------------------------------*/
+#alert2
+{
+  height: 15%;
+  top:30%;
+}
+.alert2content
+{
+	color: white;
+	font-size: 40rpx;
+  font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  margin: 5%;
+}
+/*-------------------------------------------------------------------------------*/
 .rankingListPage
 {
 	position: fixed;
@@ -172,8 +188,64 @@ page
 	height: 1000rpx;
 	background-color: rgb(0,0,0);
 	color: rgb(255,255,255);
-	font-weight: 800;
-	font-size: 40rpx;
+	font-weight: 600;
+	font-size: 30rpx;
+}
+.listLine
+{
+  height: 100rpx;
+  margin-bottom: 5rpx;
+  background-color: rgba(1, 22, 26, 0.849);
+}
+#listIndex
+{
+  position: relative;
+  color: rgb(143, 183, 209);
+  font-size: 60rpx;
+  font-weight: 900;
+  width: 60rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  vertical-align: middle;
+	display: inline-block;
+}
+#listAvatar
+{
+  position: relative;
+  left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+#listName
+{
+  position: relative;
+  left: 40rpx;
+  width: 230rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+#listDot
+{
+  position: relative;
+  left: 50rpx;
+	background-color: rgb(255, 255, 0);
+	width: 32rpx;
+	height: 32rpx;
+	border-radius: 50%;
+	border-width: 0;
+  vertical-align: middle;
+  display: inline-block; 
+}
+#listNumber
+{
+  position: relative;
+  left: 60rpx;
+  width: 100rpx;
+  vertical-align: middle;
+  display: inline-block;
 }
 /*-------------------------------------------------------------------------------*/
 .announcementPage
@@ -185,6 +257,7 @@ page
 	position: fixed;
 	background-color: rgb(255, 255, 255);
 	opacity: 0.5;
+  z-index: 998;
 }
 .announcement
 {
@@ -198,7 +271,8 @@ page
 	opacity: 0.8;
 	border-radius: 30rpx;
 	text-align: center;
-	box-shadow: 20rpx 20rpx 50rpx 0rpx rgb(0,0,0);	
+	box-shadow: 20rpx 20rpx 50rpx 0rpx rgb(0,0,0);
+  z-index: 999;
 	}
 .title
 {

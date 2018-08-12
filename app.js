@@ -9,15 +9,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: 'https://www.pkusess.club/openid',
-          //url: 'http://127.0.0.1:5000/openid',
-          method: 'POST',
-          data: {'code': res.code},
-          success: (res) =>{
-            this.globalData.openid = res.data
-          }
-        })
+        this.globalData.code = res.code
       }
     })
     // 获取用户信息
@@ -42,6 +34,8 @@ App({
   },
   globalData: {
     userInfo: {},
-    openid: ''
+    openid: '',
+    code: '',
+    loged: false
   }
 })

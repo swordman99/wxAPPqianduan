@@ -19,7 +19,7 @@
 	<!--按钮-->
   <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
 	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
-	<view wx:if="{{flag.loged}}" class="log">登陆成功</view>
+	<view wx:if="{{flag.loged}}" class="log">登录成功</view>
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击登录</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
 </view>
@@ -39,18 +39,26 @@
 	<block wx:if="{{flag.global}}">
 		<scroll-view scroll-y='true' scroll-top='0' id="global-rank" class="rankingList">
 			<view wx:for="{{init.lists[0]}}" wx:key='*this'>
-				{{index + 1}}
-				{{item[1]}}
-				{{item[2]}}
+      <view class='listLine'>
+				<view id='listIndex'>{{index + 1}}</view>
+        <image id="listAvatar" src='{{item[0]}}' mode="scaleToFill"></image>
+				<view id='listName'>{{item[1]}}</view>
+        <view id='listDot'></view>
+        <view id="listNumber"> X {{item[2]}}</view>
+      </view>
 			</view>
 		</scroll-view>
 	</block>
 	<block wx:else>
 		<scroll-view scroll-y='true' scroll-top='0' id="friend-rank" class="rankingList">
 			<view wx:for="{{init.lists[1]}}" wx:key='*this'>
-				{{index + 1}}
-				{{item[1]}}
-				{{item[2]}}
+      <view class='listLine'>
+				<view id='listIndex'>{{index + 1}}</view>
+        <image id="listAvatar" src='{{item[0]}}' mode="scaleToFill"></image>
+				<view id='listName'>{{item[1]}}</view>
+        <view id='listDot'></view>
+        <view id="listNumber"> X {{item[2]}}</view>
+      </view>
 			</view>
 		</scroll-view>
 	</block>

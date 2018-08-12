@@ -8,25 +8,61 @@ Page({
     stuentNumber: '',
     currentUser: [],
     number: 0,
-    init: { sum: [, '---'], lists: [[], []], content: [] },
+    init: { sum: ['---', '---'], lists: [[], []], content: [] },
     rank: ['---', '---'],
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
     flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false }
   },
   //初始登录数据
   onLoad: function () {
-    console.log(app.globalData.userInfo);
     var that = this;
+    wx.request({
+      //url: 'https://www.pkusess.club/openid',
+      url: 'http://127.0.0.1:5000/openid',
+      method: 'POST',
+      data: { 'code': app.globalData.code },
+      success: (res) => {
+        app.globalData.openid = res.data;
+      }
+    })
     wx.request({
       //url: 'https://www.pkusess.club/home',
       url: 'http://127.0.0.1:5000/home',
+      method: 'POST',
+      data:{ openID: app.globalData.openid },
       header: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        that.setData({ init: res.data.init })
+        that.setData({ 
+          'flag.loged': res.data.loged,
+          init: res.data.init,
+          rank: res.data.rank,
+          number: res.data.number
+        })
       }
-    })
+    });
+    if(app.globalData.loged){
+      wx.request({
+        //url: 'https://www.pkusess.club/loginsuccess',
+        url: 'http://127.0.0.1:5000/loginsuccess',
+        data: {
+          openID: app.globalData.openid
+        },
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          that.setData({
+            'flag.loged': true,
+            init: res.data.init,
+            rank: res.data.rank,
+            number: res.data.number
+          })
+        }
+      })
+    }
   },
   //提示尚未登录
   alert2: function () {
@@ -97,6 +133,7 @@ Page({
       },
       success: (res) => {
         if (res.data.isMatch == true) {
+          app.globalData.loged = true;
           that.setData({
             'flag.announcement': false,
             'flag.log': false,
@@ -105,6 +142,7 @@ Page({
             'flag.loged': true,
             rank: res.data.rank,
             number: res.data.number,
+            init: res.data.init
           })
         }
         else {
