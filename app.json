@@ -1,13 +1,14 @@
 {
-  "pages":[
+  "pages": [
+    "pages/index/load/load",
     "pages/index/home/home",
     "pages/index/match/match",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"bold",
+  "window": {
+    "backgroundTextStyle": "bold",
     "navigationBarBackgroundColor": "#08083b",
     "navigationBarTitleText": "地学知识竞赛",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   }
 }

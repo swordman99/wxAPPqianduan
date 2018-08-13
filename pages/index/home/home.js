@@ -17,15 +17,6 @@ Page({
   onLoad: function () {
     var that = this;
     wx.request({
-      url: 'https://www.pkusess.club/openid',
-      //url: 'http://127.0.0.1:5000/openid',
-      method: 'POST',
-      data: { 'code': app.globalData.code },
-      success: (res) => {
-        app.globalData.openid = res.data;
-      }
-    })
-    wx.request({
       url: 'https://www.pkusess.club/home',
       //url: 'http://127.0.0.1:5000/home',
       method: 'POST',
@@ -40,6 +31,7 @@ Page({
           rank: res.data.rank,
           number: res.data.number
         })
+        //console.log(that.data.flag.loged)
       }
     });
     if(app.globalData.loged){
