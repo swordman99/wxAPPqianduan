@@ -25,8 +25,16 @@ Page({
         method: 'POST',
         data: { 'code': app.globalData.code },
         success: (res) => {
-          app.globalData.openid = res.data;
-          //console.log(app.globalData.openid)
+          wx.request({
+            url: 'https://www.pkusess.club/freq',
+            //url: 'http://127.0.0.1:5000/freq',
+            method: 'POST',
+            data: {openID: res.data.openID},
+            success: (res) => {
+              app.globalData.freq = res.data.freq
+            }
+          })
+          app.globalData.openid = res.data.openID;
           wx.redirectTo({
             url: '../home/home',
           })

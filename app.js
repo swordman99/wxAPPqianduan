@@ -37,6 +37,7 @@ App({
     openid: '',
     code: '',
     loged: false,
-    num: 0
+    num: 0,
+    freq:0
   }
 })
