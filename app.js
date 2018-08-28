@@ -36,6 +36,7 @@ App({
     userInfo: {},
     openid: '',
     code: '',
-    loged: false
+    loged: false,
+    num: 0
   }
 })

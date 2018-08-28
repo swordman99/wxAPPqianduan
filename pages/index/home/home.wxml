@@ -12,7 +12,7 @@
 	<!--积分排名-->
 	<view class="integral">
 		<view class="dot"></view>
-		<view class="number"> X {{number}}</view>
+		<view class="num"> X {{num}}</view>
 		<view class="rank" id='globalRank'> 全国排名： {{rank[0]}}/{{init.sum[0]}}</view>
 		<view class="rank" id='schoolRank'> 全校排名： {{rank[1]}}/{{init.sum[1]}}</view>
 	</view>
@@ -20,7 +20,7 @@
   <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
 	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
 	<view wx:if="{{flag.loged}}" class="log">登录成功</view>
-	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击登录</button>
+	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击注册</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
 </view>
 <!--尚未登录提示栏-->
@@ -44,7 +44,7 @@
         <image id="listAvatar" src='{{item[0]}}' mode="scaleToFill"></image>
 				<view id='listName'>{{item[1]}}</view>
         <view id='listDot'></view>
-        <view id="listNumber"> X {{item[2]}}</view>
+        <view id="listnum"> X {{item[2]}}</view>
       </view>
 			</view>
 		</scroll-view>
@@ -57,7 +57,7 @@
         <image id="listAvatar" src='{{item[0]}}' mode="scaleToFill"></image>
 				<view id='listName'>{{item[1]}}</view>
         <view id='listDot'></view>
-        <view id="listNumber"> X {{item[2]}}</view>
+        <view id="listnum"> X {{item[2]}}</view>
       </view>
 			</view>
 		</scroll-view>
@@ -71,7 +71,7 @@
 		<text class="title">公告</text>
 		<scroll-view scroll-y='true' scroll-top='0' id="global-rank" class="announcementContent">
 			<view class="content" wx:for="{{init.content}}">
-				<view class="line">{{index+1}}. {{item}}</view>
+				<view class="line">{{}}{{item}}</view>
 			</view>
 		</scroll-view>
 	</view>
@@ -90,15 +90,15 @@
 		<block wx:elif="{{flag.choose == 1}}">
 			<form bindsubmit="submitData">
 				<input placeholder="真实姓名" class="inputs" id="name" name="name">{{name}}</input>
-				<input placeholder="手机号" type="number" class="inputs" id="phone" name='phone'>{{phone}}</input>
-				<input placeholder="学号" type="number" class="inputs" id="number" name='number'>{{stuentNumber}}</input>
+				<input placeholder="手机号" type="num" class="inputs" id="phone" name='phone'>{{phone}}</input>
+				<input placeholder="学号" type="num" class="inputs" id="num" name='num'>{{stuentnum}}</input>
 				<button form-type="submit" class='log' id='submit'>确定</button>	
 			</form>
 		</block>
 		<!--校外栏-->
 		<block wx:else>
 			<form bindsubmit="submitData">
-				<input placeholder="手机号" type="number" class="inputs" id="phone" name='phone'>{{phone}}</input>
+				<input placeholder="手机号" type="num" class="inputs" id="phone" name='phone'>{{phone}}</input>
 				<button form-type="submit" class='log' id='submit'>确定</button>
 			</form>
 		</block>

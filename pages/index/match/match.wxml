@@ -5,12 +5,13 @@
 	<view class="finishPage"></view>
 	<view class="finish">
 	    <view class="finishDot"></view>
-	    <view class="finishNumber"> X {{step}}</view>
+	    <view class="finishnum"> X {{step}}</view>
 	    <view wx:if="{{text}}"class="text">
-		    <view wx:if="{{number <= 5}}">革命尚未成功，同志仍需努力！</view>
-		    <view wx:elif="{{number <= 7}}">您真是太聚了！</view>
-		    <view wx:elif="{{number <= 9}}">大佬大佬，给个好友位吧！</view>
-		    <view wx:elif="{{number == 10}}">巨神orz，答穿答题墙！</view>
+		    <view wx:if="{{num <= 5}}">革命尚未成功，同志仍需努力！</view>
+		    <view wx:elif="{{num <= 10}}">还不错哦，再接再厉！</view>
+		    <view wx:elif="{{num <= 20}}">您太聚了！</view>
+        <view wx:elif="{{num <= 30}}">大佬大佬，给个好友位吧！</view>
+		    <view wx:elif="{{num >= 30}}">巨神orz，答穿答题墙！</view>
 	    </view>
 	   	<navigator open-type='redirect' url='../home/home' class="return" hover-class="button-hover" hover-stay-time="2000">返回主页</navigator>
 	</view>
@@ -21,9 +22,9 @@
 	<!--计时器-->
   <canvas canvas-id="secondCanvas" class='secondCanvasPage'></canvas>
   <!--信息栏-->
-  <view class='numberPage'>
+  <view class='numPage'>
     <view class="dot"></view>
-    <view class="number"> X {{number}}</view>
+    <view class="num"> X {{num}}</view>
   </view>
   <view class="avatarPage">
     <image class="avatar" src='{{avatarUrl}}' mode="scaleToFill"></image>

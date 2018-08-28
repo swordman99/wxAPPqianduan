@@ -48,7 +48,7 @@ page
 	border-radius: 50%;
 	border-width: 0;
 }
-.finishNumber
+.finishnum
 {
   position: fixed;
   left:350rpx;
@@ -109,7 +109,7 @@ page
   left: 550rpx;
   top: 130rpx;
 }
-.numberPage
+.numPage
 {
   position: fixed;
   width: 300rpx;
@@ -133,7 +133,7 @@ page
 	border-radius: 50%;
 	border-width: 0;
 }
-.number
+.num
 {
   position: fixed;
   left:160rpx;

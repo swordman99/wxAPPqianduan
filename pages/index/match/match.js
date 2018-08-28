@@ -19,7 +19,7 @@ Page({
     finish: false,
     begin: false,
     countdown: 3,
-    number: 0,
+    num: 0,
     avatarUrl: '',
     height: '0%',
     top: '90%',
@@ -31,6 +31,54 @@ Page({
       c: 'rgba(15, 170, 157, 0.966)',
       d: 'rgba(15, 170, 157, 0.966)'
     }
+  },
+  //结束函数
+  finish: function () {
+    //接收总数
+    var that = this;
+    wx.request({
+      url: 'https://www.pkusess.club/finish',
+      //url: 'http://127.0.0.1:5000/finish',
+      data: {
+        openID: app.globalData.openid,
+        flag: 'finish'
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: (res) => {
+        that.setData({
+          num: res.data.num - app.globalData.num
+        })
+      }
+    });
+    //页面初始化
+    count = 1
+    secondFlag = false
+    height = processHeight
+    top = 90 - processHeight
+    //弹出总结框
+    function numAnimation() {
+      setTimeout(function () {
+        var step = that.data.step + 1;
+        if (step == that.data.num + 1) {
+          that.setData({
+            text: true,
+          });
+          return;
+        } else {
+          that.setData({
+            step: step
+          })
+        }
+        numAnimation();
+      }, 300);
+    }
+    this.setData({
+      finish: true
+    });
+    numAnimation();
   },
   //倒计时
   onReady: function () {
@@ -70,10 +118,10 @@ Page({
         'Content-Type': 'application/json'
       },
       success: (res) => {
-        console.log(res)
         this.setData({
           title: res.data.title, //题目
-          op: res.data.op //选项列表
+          op: res.data.op, //选项列表
+          num: res.data.num - app.globalData.num
         })
       },
       fail: (res) => {
@@ -93,7 +141,7 @@ Page({
       start = 1.5 * Math.PI, // 开始的弧度
       end = -0.5 * Math.PI, // 结束的弧度
       time = null, // 计时器容器
-      n = 8, // 当前倒计时为8秒
+      n = 15, // 当前倒计时为15秒
       rpx;
     //获取rpx参数
     wx.getSystemInfo({
@@ -125,7 +173,8 @@ Page({
               success: (res) => {
                 that.setData({
                   title: res.data.title, //题目
-                  op: res.data.op //选项列表
+                  op: res.data.op, //选项列表
+                  num: res.data.num - app.globalData.num
                 })
               },
               fail: (res) => {
@@ -217,7 +266,8 @@ Page({
       success: (res) => {
         that.setData({
           title: res.data.title, //题目
-          op: res.data.op //选项列表
+          op: res.data.op, //选项列表
+          num: res.data.num - app.globalData.num
         })
       },
       fail: (res) => {
@@ -270,7 +320,7 @@ Page({
         //答对
         if (res.judge == true) {
           that.setData({
-            number: res.number,
+            //num: res.data.num - app.globalData.num,
             'color.a': 'white'
           })
         }
@@ -306,7 +356,7 @@ Page({
         //答对
         if (res.judge == true) {
           that.setData({
-            number:res.number,
+            //num:res.data.num,
             'color.b': 'white'
           })
         }
@@ -342,7 +392,7 @@ Page({
         //答对
         if (res.judge == true) {
           that.setData({
-            number: res.number,
+            //num: res.data.num - app.globalData.num,
             'color.c': 'white'
           })
         }
@@ -378,7 +428,7 @@ Page({
         //答对
         if (res.judge == true) {
           that.setData({
-            number: res.number,
+            //num: res.data.num - app.globalData.num,
             'color.d': 'white'
           })
         }
@@ -391,54 +441,6 @@ Page({
         this.init(index)
       }
     });
-  },
-  //结束函数
-  finish: function () {
-    //接收总数
-    var that = this;
-    wx.request({
-      url: 'https://www.pkusess.club/finish',
-      //url: 'http://127.0.0.1:5000/finish',
-      data: {
-        openID: app.globalData.openid,
-        flag: 'finish'
-      },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        that.setData({
-          number: res.data.number
-        })
-      }
-    });
-    //页面初始化
-    count = 1
-    secondFlag = false
-    height = processHeight
-    top = 90 - processHeight
-    //弹出总结框
-    function numberAnimation() {
-      setTimeout(function () {
-        var step = that.data.step + 1;
-        if (step == that.data.number + 1) {
-          that.setData({
-            text: true,
-          });
-          return;
-        } else {
-          that.setData({
-            step: step
-          })
-        }
-        numberAnimation();
-      }, 300);
-    }
-    this.setData({
-      finish: true
-    });
-    numberAnimation();
   }
 })
 //2.home页面onshow方法更新数据 4.排行榜

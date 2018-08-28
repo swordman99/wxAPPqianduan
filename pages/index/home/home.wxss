@@ -43,7 +43,7 @@ page
 	border-radius: 50%;
 	border-width: 0;
 }
-.number
+.num
 {
 	position: fixed;
 	left: 210rpx;
@@ -239,7 +239,7 @@ page
   vertical-align: middle;
   display: inline-block; 
 }
-#listNumber
+#listnum
 {
   position: relative;
   left: 60rpx;
@@ -354,7 +354,7 @@ page
 {
  	top:390rpx;
 }
-#number
+#num
 {
  	top:480rpx;
 }

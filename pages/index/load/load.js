@@ -18,19 +18,32 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.request({
-      url: 'https://www.pkusess.club/openid',
-      //url: 'http://127.0.0.1:5000/openid',
-      method: 'POST',
-      data: { 'code': app.globalData.code },
-      success: (res) => {
-        app.globalData.openid = res.data;
-        console.log(app.globalData.openid)
-        wx.redirectTo({
-          url: '../home/home',
-        })
-      }
-    })
+    if (app.globalData.code != ''){
+      wx.request({
+        url: 'https://www.pkusess.club/openid',
+        //url: 'http://127.0.0.1:5000/openid',
+        method: 'POST',
+        data: { 'code': app.globalData.code },
+        success: (res) => {
+          app.globalData.openid = res.data;
+          //console.log(app.globalData.openid)
+          wx.redirectTo({
+            url: '../home/home',
+          })
+        }
+      })
+    }
+    else{
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          app.globalData.code = res.code
+        }
+      })
+      wx.redirectTo({
+        url: '../home/home',
+      })
+    }
   },
 
   /**

@@ -1,13 +1,13 @@
-const app = getApp()
+var app = getApp()
 Page({
   //数据
   data: {
     alert2: false,
     name: '',
     phone: '',
-    stuentNumber: '',
+    stuentnum: '',
     currentUser: [],
-    number: 0,
+    num: 0,
     init: { sum: ['---', '---'], lists: [[], []], content: [] },
     rank: ['---', '---'],
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
@@ -15,6 +15,12 @@ Page({
   },
   //初始登录数据
   onLoad: function () {
+    //console.log(app.globalData.openid)
+    if (app.globalData.openid == ''){
+      wx.redirectTo({
+        url: '../load/load',
+      })
+    }
     var that = this;
     wx.request({
       url: 'https://www.pkusess.club/home',
@@ -29,9 +35,9 @@ Page({
           'flag.loged': res.data.loged,
           init: res.data.init,
           rank: res.data.rank,
-          number: res.data.number
+          num: res.data.num
         })
-        //console.log(that.data.flag.loged)
+        app.globalData.num = res.data.num
       }
     });
     if(app.globalData.loged){
@@ -50,7 +56,7 @@ Page({
             'flag.loged': true,
             init: res.data.init,
             rank: res.data.rank,
-            number: res.data.number
+            num: res.data.num
           })
         }
       })
@@ -108,15 +114,13 @@ Page({
   //点击确认
   submitData: function (e) {
     var that = this;
-    var userInfo = app.globalData.userInfo;
-    var openid = app.globalData.openid;
     wx.request({
       url: 'https://www.pkusess.club/login',
       //url: 'http://127.0.0.1:5000/login',
       method: 'POST',
       data: {
-        'userInfo': userInfo,
-        'openID': openid,
+        'userInfo': app.globalData.userInfo,
+        'openID': app.globalData.openid,
         'type': that.data.flag['choose'] - 1,
         'value': e.detail.value
       },
@@ -133,7 +137,7 @@ Page({
             'flag.alert': false,
             'flag.loged': true,
             rank: res.data.rank,
-            number: res.data.number,
+            num: res.data.num,
             init: res.data.init
           })
         }
