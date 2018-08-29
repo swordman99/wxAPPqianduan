@@ -82,11 +82,6 @@ Page({
   },
   //倒计时
   onReady: function () {
-    if (app.globalData.freq > 2){
-      wx.redirectTo({
-        url: '../reject/reject',
-      })
-    }
     var url = app.globalData.userInfo.avatarUrl;
     this.setData({
       avatarUrl: url

@@ -16,7 +16,7 @@ Page({
   //初始登录数据
   onLoad: function () {
     //console.log(app.globalData.openid)
-    while (app.globalData.openid == ''){
+    if (app.globalData.openid == ''){
       wx.redirectTo({
         url: '../load/load',
       })
@@ -38,6 +38,15 @@ Page({
           num: res.data.num
         })
         app.globalData.num = res.data.num
+        wx.request({
+          url: 'https://www.pkusess.club/getfreq',
+          //url: 'http://127.0.0.1:5000/getfreq',
+          method: 'POST',
+          data: { openID: app.globalData.openid },
+          success: (res) => {
+            app.globalData.freq = res.data.freq;
+          }
+        })
       }
     });
     if(app.globalData.loged){

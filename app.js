@@ -38,6 +38,7 @@ App({
     code: '',
     loged: false,
     num: 0,
-    freq:0
+    freq:0,
+    freqall: 10
   }
 })

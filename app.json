@@ -4,7 +4,8 @@
     "pages/index/home/home",
     "pages/index/match/match",
     "pages/logs/logs",
-    "pages/index/reject/reject"
+    "pages/index/reject/reject",
+    "pages/index/freq/freq"
   ],
   "window": {
     "backgroundTextStyle": "bold",

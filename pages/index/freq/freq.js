@@ -1,49 +1,61 @@
-// pages/index/load/load.js
-var app = getApp()
+// pages/index/freq/freq.js
+const app = getApp()
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
+    freq: 0,
+    last: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.freq > app.globalData.freqall) {
+      wx.redirectTo({
+        url: '../reject/reject',
+      })
+    }
+    else{
+      this.setData({
+        freq: app.globalData.freq,
+        last: app.globalData.freqall - app.globalData.freq
+      })
+      wx.request({
+        url: 'https://www.pkusess.club/setfreq',
+        //url: 'http://127.0.0.1:5000/setfreq',
+        method: 'POST',
+        data: { openID: app.globalData.openid },
+        success: (res) => {
+          app.globalData.freq = res.data.freq;
+        }
+      })
+      //停留3秒
+      var t = new Date().getTime();
+      function sleep(d) {
+        while (new Date().getTime() - t <= d);
+      }
+      sleep(3000);
+      wx.redirectTo({
+        url: '../match/match',
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    if (app.globalData.code != ''){
-      wx.request({
-        url: 'https://www.pkusess.club/openid',
-        //url: 'http://127.0.0.1:5000/openid',
-        method: 'POST',
-        data: { 'code': app.globalData.code },
-        success: (res) => {
-          app.globalData.openid = res.data.openID;
-          wx.redirectTo({
-            url: '../home/home',
-          })
-        }
-      })
-    }
-    else{
-      wx.redirectTo({
-        url: '../home/home',
-      })
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**

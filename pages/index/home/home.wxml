@@ -18,7 +18,7 @@
 	</view>
 	<!--按钮-->
   <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
-	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
+	<navigator open-type='redirect' url='../freq/freq' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
 	<view wx:if="{{flag.loged}}" class="log">登录成功</view>
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击注册</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
@@ -83,8 +83,8 @@
 	<view class="announcement" id='logPage'>
 		<!--选择栏-->
 		<block wx:if="{{flag.choose == 0}}">
-			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logStudent" class="logPeople" id="student">校内人员登录</view>
-			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logOther" class="logPeople" id="other">校外人员登录</view>
+			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logStudent" class="logPeople" id="student">校内人员注册</view>
+			<view hover-class="button-hover" hover-stay-time="2000" bind:tap="logOther" class="logPeople" id="other">校外人员注册</view>
 		</block>
 		<!--校内栏-->
 		<block wx:elif="{{flag.choose == 1}}">
