@@ -15,7 +15,7 @@
 		<view class="num"> X {{num}}</view>
 		<view class="rank" id='globalRank'> 全国排名：{{rank[0]}}/{{init.sum[0]}}</view>
 		<view class="rank" id='schoolRank'> 全校排名：{{rank[1]}}/{{init.sum[1]}}</view>
-    <view class="rank" id='resttime'> 剩余挑战次数：{{last}}</view>
+    <view class="rank" id='resttime'> 剩余次数：{{last}}</view>
 	</view>
 	<!--按钮-->
   <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
@@ -25,7 +25,7 @@
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击注册</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
 </view>
-<!--尚未登录提示栏-->
+<!--提示栏-->
 <view wx:if="{{alert2}}">
 	<view class="announcementPage" bindtap='closeAnnouncement'></view>
 	<view class="announcement" id='alert2' wx:if='{{flag.loged == false}}'>
@@ -97,14 +97,16 @@
 				<input placeholder="真实姓名" class="inputs" id="name" name="name">{{name}}</input>
 				<input placeholder="手机号" type="num" class="inputs" id="phone" name='phone'>{{phone}}</input>
 				<input placeholder="学号" type="num" class="inputs" id="num" name='num'>{{stuentnum}}</input>
-				<button form-type="submit" class='log' id='submit'>确定</button>	
+				<button form-type="submit" class='log' id='submit' wx:if='{{flag.submited==false}}'>确定</button>
+        <button  class='log' id='submited' wx:else>确定</button>
 			</form>
 		</block>
 		<!--校外栏-->
 		<block wx:else>
 			<form bindsubmit="submitData">
 				<input placeholder="手机号" type="num" class="inputs" id="phone" name='phone'>{{phone}}</input>
-				<button form-type="submit" class='log' id='submit'>确定</button>
+				<button form-type="submit" class='log' id='submit' wx:if='{{flag.submited==false}}'>确定</button>
+        <button  class='log' id='submited' wx:else>确定</button>
 			</form>
 		</block>
 		<!--提示语-->

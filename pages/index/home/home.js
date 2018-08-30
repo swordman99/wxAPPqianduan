@@ -12,7 +12,7 @@ Page({
     rank: ['---', '---'],
     last: '---',
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
-    flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false }
+    flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false, submited: false }
   },
   //初始登录数据
   onLoad: function () {
@@ -58,7 +58,9 @@ Page({
     });
     if(app.globalData.loged){
       that.setData({
-        'flag.loged': true
+        'flag.announcement': false,
+        'flag.loged': true,
+        'flag.log': false
       })
     }
   },
@@ -108,7 +110,6 @@ Page({
   },
   //获取用户信息
   onGotUserInfo: function (e) {
-    console.log(e.detail.userInfo);
     app.globalData.userInfo = e.detail.userInfo
   },
   //点击确认
@@ -128,6 +129,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: (res) => {
+        console.log(res)
         if (res.data.isMatch == true) {
           app.globalData.loged = true;
           that.setData({
@@ -136,14 +138,17 @@ Page({
             'flag.choose': 0,
             'flag.alert': false,
             'flag.loged': true,
+            'flag.submited': false,
             rank: res.data.rank,
             init: res.data.init,
             num: res.data.num
           })
         }
         else {
-          that.setData({ 'flag.alert': true })
-          //修改排行榜效果
+          that.setData({
+            'flag.alert': true,
+            'flag.submited': false,
+          })
         }
       }
     })

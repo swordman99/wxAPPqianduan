@@ -375,6 +375,13 @@ page
 	left:290rpx;
 	width: 170rpx;
 }
+#submited
+{
+	top:580rpx;
+	left:290rpx;
+	width: 170rpx;
+  background-color: rgb(184, 215, 236);
+}
 .alert
 {
 	position: fixed;
