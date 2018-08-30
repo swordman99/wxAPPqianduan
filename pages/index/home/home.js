@@ -8,8 +8,9 @@ Page({
     stuentnum: '',
     currentUser: [],
     num: 0,
-    init: { sum: ['---', '---'], lists: [[], []], content: [] },
+    init: { sum: ['---', '---'], lists: [[], []], content: []},
     rank: ['---', '---'],
+    last: '---',
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
     flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false }
   },
@@ -26,7 +27,10 @@ Page({
       url: 'https://www.pkusess.club/home',
       //url: 'http://127.0.0.1:5000/home',
       method: 'POST',
-      data:{ openID: app.globalData.openid },
+      data:{
+        'openID': app.globalData.openid,
+        'userInfo': app.globalData.userInfo
+      },
       header: {
         'Content-Type': 'application/json'
       },
@@ -45,29 +49,16 @@ Page({
           data: { openID: app.globalData.openid },
           success: (res) => {
             app.globalData.freq = res.data.freq;
+            that.setData({
+              last: app.globalData.freqall - app.globalData.freq
+            })
           }
         })
       }
     });
     if(app.globalData.loged){
-      wx.request({
-        url: 'https://www.pkusess.club/loginsuccess',
-        //url: 'http://127.0.0.1:5000/loginsuccess',
-        data: {
-          openID: app.globalData.openid
-        },
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success: function (res) {
-          that.setData({
-            'flag.loged': true,
-            init: res.data.init,
-            rank: res.data.rank,
-            num: res.data.num
-          })
-        }
+      that.setData({
+        'flag.loged': true
       })
     }
   },
@@ -146,8 +137,8 @@ Page({
             'flag.alert': false,
             'flag.loged': true,
             rank: res.data.rank,
-            num: res.data.num,
-            init: res.data.init
+            init: res.data.init,
+            num: res.data.num
           })
         }
         else {

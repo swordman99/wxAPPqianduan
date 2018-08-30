@@ -21,16 +21,23 @@ page
 	height: 100rpx;
 	margin: 0rpx;
 	left: 50rpx;
-	top: 50rpx;
+	top: 30rpx;
 }
 .userinfo-nickname
 {
 	position: fixed;
-	color: rgb(255, 255, 255);
+	color: rgb(143, 183, 209);
 	font-weight: bold;
-	font-size: 32rpx;
-	left: 170rpx;
-	top: 25rpx;
+	font-size: 28rpx;
+	left: 40rpx;
+	top: 130rpx;
+  width: 120rpx;
+  height: 70rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .dot
 {
@@ -39,7 +46,7 @@ page
 	width: 32rpx;
 	height: 32rpx;
 	left: 170rpx;
-	top: 71rpx;
+	top: 33rpx;
 	border-radius: 50%;
 	border-width: 0;
 }
@@ -47,7 +54,7 @@ page
 {
 	position: fixed;
 	left: 210rpx;
-	top: 67rpx;
+	top: 30rpx;
 	color: rgb(255, 255, 255);
 	font-weight: bold;
 	font-size: 32rpx; 	
@@ -62,11 +69,15 @@ page
 }
 #globalRank
 {
-	top: 110rpx;
+	top: 70rpx;
 }
 #schoolRank
 {
-  	top:148rpx;
+  	top:110rpx;
+}
+#resttime
+{
+  top: 150rpx;
 }
 .begin
 {

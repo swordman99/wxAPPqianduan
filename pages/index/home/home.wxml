@@ -13,12 +13,14 @@
 	<view class="integral">
 		<view class="dot"></view>
 		<view class="num"> X {{num}}</view>
-		<view class="rank" id='globalRank'> 全国排名： {{rank[0]}}/{{init.sum[0]}}</view>
-		<view class="rank" id='schoolRank'> 全校排名： {{rank[1]}}/{{init.sum[1]}}</view>
+		<view class="rank" id='globalRank'> 全国排名：{{rank[0]}}/{{init.sum[0]}}</view>
+		<view class="rank" id='schoolRank'> 全校排名：{{rank[1]}}/{{init.sum[1]}}</view>
+    <view class="rank" id='resttime'> 剩余挑战次数：{{last}}</view>
 	</view>
 	<!--按钮-->
   <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:if='{{flag.loged == false}}'>开始挑战</view>
-	<navigator open-type='redirect' url='../freq/freq' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
+  <view class="begin" hover-class="button-hover" hover-stay-time="2000" bindtap='alert2' wx:elif='{{last <= 0}}'>开始挑战</view>
+	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
 	<view wx:if="{{flag.loged}}" class="log">登录成功</view>
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击注册</button>
 	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
@@ -26,8 +28,11 @@
 <!--尚未登录提示栏-->
 <view wx:if="{{alert2}}">
 	<view class="announcementPage" bindtap='closeAnnouncement'></view>
-	<view class="announcement" id='alert2'>
+	<view class="announcement" id='alert2' wx:if='{{flag.loged == false}}'>
 		<text class='alert2content'>您尚未登录\n请先登录再答题</text>
+  </view>
+	<view class="announcement" id='alert2' wx:else>
+		<text class='alert2content'>您本月挑战次数已达到上限\n请下月继续</text>
   </view>
 </view>
 <!-- 排行榜 -->

@@ -73,7 +73,7 @@ Page({
           })
         }
         numAnimation();
-      }, 300);
+      }, 80);
     }
     this.setData({
       finish: true
@@ -108,6 +108,16 @@ Page({
         countdownEvent();
       }, 1000);
     }
+    //更新挑战次数
+    wx.request({
+      url: 'https://www.pkusess.club/setfreq',
+      //url: 'http://127.0.0.1:5000/setfreq',
+      method: 'POST',
+      data: { openID: app.globalData.openid },
+      success: (res) => {
+        app.globalData.freq = res.data.freq;
+      }
+    })
     //请求题(请求后端发一道题)
     wx.request({
       url: 'https://www.pkusess.club/questionget',

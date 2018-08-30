@@ -3,9 +3,7 @@
     "pages/index/load/load",
     "pages/index/home/home",
     "pages/index/match/match",
-    "pages/logs/logs",
-    "pages/index/reject/reject",
-    "pages/index/freq/freq"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "bold",
