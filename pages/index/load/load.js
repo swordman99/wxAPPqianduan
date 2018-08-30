@@ -1,8 +1,9 @@
 // pages/index/load/load.js
 var app = getApp()
 Page({
-  onShow: function () {
-    if (app.globalData.code != ''){
+  onLoad: function () {
+    console.log("load")
+    if (app.globalData.code != '' && app.globalData.userInfo != ''){
       wx.request({
         url: 'https://www.pkusess.club/openid',
         //url: 'http://127.0.0.1:5000/openid',
@@ -18,7 +19,7 @@ Page({
     }
     else{
       wx.redirectTo({
-        url: '../home/home',
+        url: '../load1/load1',
       })
     }
   },

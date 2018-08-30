@@ -16,12 +16,6 @@ Page({
   },
   //初始登录数据
   onLoad: function () {
-    //console.log(app.globalData.openid)
-    if (app.globalData.openid == ''){
-      wx.redirectTo({
-        url: '../load/load',
-      })
-    }
     var that = this;
     wx.request({
       url: 'https://www.pkusess.club/home',

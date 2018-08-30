@@ -3,7 +3,8 @@
     "pages/index/load/load",
     "pages/index/home/home",
     "pages/index/match/match",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/index/load1/load1"
   ],
   "window": {
     "backgroundTextStyle": "bold",
