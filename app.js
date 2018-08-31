@@ -34,7 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: '',
+    userInfo: null,
     openid: '',
     code: '',
     loged: false,

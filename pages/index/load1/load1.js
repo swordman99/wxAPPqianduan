@@ -1,4 +1,5 @@
 // pages/index/load1/load1.js
+var app = getApp()
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
     wx.redirectTo({
       url: '../load/load',
     })
