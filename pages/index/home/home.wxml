@@ -31,6 +31,9 @@
 	<view class="announcement" id='alert2' wx:if='{{flag.loged == false}}'>
 		<text class='alert2content'>您尚未登录\n请先登录再答题</text>
   </view>
+  <view class="announcement" id='alert2' wx:elif='{{noinfo == true}}'>
+		<text class='alert2content'>您尚未填写全部信息\n请按要求填写</text>
+  </view>
 	<view class="announcement" id='alert2' wx:else>
 		<text class='alert2content'>您本月挑战次数已达到上限\n请下月继续</text>
   </view>

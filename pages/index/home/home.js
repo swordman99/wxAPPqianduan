@@ -3,9 +3,12 @@ Page({
   //数据
   data: {
     alert2: false,
+    alert3: false,
     name: '',
     phone: '',
     stuentnum: '',
+    sign: 0,
+    noinfo: false,
     currentUser: [],
     num: 0,
     init: { sum: ['---', '---'], lists: [[], []], content: []},
@@ -96,11 +99,15 @@ Page({
   },
   //打开校内登陆栏
   logStudent: function () {
-    this.setData({ 'flag.choose': 1 })
+    this.setData({ 
+      'flag.choose': 1,
+      sign: 1
+    })
   },
   //打开校外登陆栏
   logOther: function () {
     this.setData({ 'flag.choose': 2 })
+    sign: 2
   },
   //获取用户信息
   onGotUserInfo: function (e) {
@@ -109,42 +116,54 @@ Page({
   //点击确认
   submitData: function (e) {
     var that = this;
-    wx.request({
-      url: 'https://www.pkusess.club/login',
-      //url: 'http://127.0.0.1:5000/login',
-      method: 'POST',
-      data: {
-        'userInfo': app.globalData.userInfo,
-        'openID': app.globalData.openid,
-        'type': that.data.flag['choose'] - 1,
-        'value': e.detail.value
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        console.log(res)
-        if (res.data.isMatch == true) {
-          app.globalData.loged = true;
-          that.setData({
-            'flag.announcement': false,
-            'flag.log': false,
-            'flag.choose': 0,
-            'flag.alert': false,
-            'flag.loged': true,
-            'flag.submited': false,
-            rank: res.data.rank,
-            init: res.data.init,
-            num: res.data.num
-          })
+    if ((e.detail.value.name != '' && e.detail.value.phone != '' && e.detail.value.num != '' && that.data.sign == 1) || (e.detail.value.phone != '' && that.data.sign == 2)) {
+      wx.request({
+        url: 'https://www.pkusess.club/login',
+        //url: 'http://127.0.0.1:5000/login',
+        method: 'POST',
+        data: {
+          'userInfo': app.globalData.userInfo,
+          'openID': app.globalData.openid,
+          'type': that.data.flag['choose'] - 1,
+          'value': e.detail.value
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: (res) => {
+          console.log(res)
+          if (res.data.isMatch == true) {
+            app.globalData.loged = true;
+            that.setData({
+              'flag.announcement': false,
+              'flag.log': false,
+              'flag.choose': 0,
+              'flag.alert': false,
+              'flag.loged': true,
+              'flag.submited': false,
+              rank: res.data.rank,
+              init: res.data.init,
+              num: res.data.num
+            })
+          }
+          else {
+            that.setData({
+              'flag.alert': true,
+              'flag.submited': false,
+            })
+          }
         }
-        else {
-          that.setData({
-            'flag.alert': true,
-            'flag.submited': false,
-          })
-        }
-      }
-    })
+      })
+    }
+    else{
+      that.setData({
+        'flag.announcement': false,
+        'flag.log': false,
+        'flag.choose': 0,
+        'flag.alert': false,
+        noinfo: true,
+        alert2: true
+      })
+    }
   }
 })
