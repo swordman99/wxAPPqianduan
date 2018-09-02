@@ -130,6 +130,17 @@ Page({
           'Content-Type': 'application/json'
         },
         success: (res) => {
+          wx.request({
+            url: 'https://www.pkusess.club/getfreq',
+            //url: 'http://127.0.0.1:5000/getfreq',
+            method: 'POST',
+            data: { openID: app.globalData.openid },
+            success: (res) => {
+              that.setData({
+                last: res.data.last
+              })
+            }
+          })
           //console.log(res)
           if (res.data.isMatch == true) {
             app.globalData.loged = true;

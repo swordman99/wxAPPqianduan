@@ -28,7 +28,7 @@
 <!--提示栏-->
 <view wx:if="{{alert2}}">
 	<view class="announcementPage" bindtap='closeAnnouncement'></view>
-	<view class="announcement" id='alert2' wx:if='{{flag.loged == false}}'>
+	<view class="announcement" id='alert2' wx:if='{{flag.loged == false && noinfo == false}}'>
 		<text class='alert2content'>您尚未登录\n请先登录再答题</text>
   </view>
   <view class="announcement" id='alert2' wx:elif='{{noinfo == true}}'>
