@@ -77,37 +77,36 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
-        }
-      })
-      if (app.globalData.code != '') {
-        wx.request({
-          url: 'https://www.pkusess.club/openid',
-          //url: 'http://127.0.0.1:5000/openid',
-          method: 'POST',
-          data: { 'code': app.globalData.code },
-          success: (res) => {
-            app.globalData.openid = res.data.openID;
-            wx.redirectTo({
-              url: '../home/home',
+          if (app.globalData.code != '') {
+            wx.request({
+              url: 'https://www.pkusess.club/openid',
+              //url: 'http://127.0.0.1:5000/openid',
+              method: 'POST',
+              data: { 'code': app.globalData.code },
+              success: (res) => {
+                app.globalData.openid = res.data.openID;
+                wx.redirectTo({
+                  url: '../home/home',
+                })
+              }
             })
           }
-        })
-      }
-      else {
-        wx.redirectTo({
-          url: '../load1/load1',
-        })
-      }
+          else {
+            wx.redirectTo({
+              url: '../load1/load1',
+            })
+          }
+        }
+      })
     }
   },
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    if (app.globalData.code != '') {
+    if (app.globalData.code != '' && app.globalData.userInfo != '') {
       wx.request({
         url: 'https://www.pkusess.club/openid',
         //url: 'http://127.0.0.1:5000/openid',

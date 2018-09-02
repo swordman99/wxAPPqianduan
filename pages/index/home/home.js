@@ -45,9 +45,8 @@ Page({
           method: 'POST',
           data: { openID: app.globalData.openid },
           success: (res) => {
-            app.globalData.freq = res.data.freq;
             that.setData({
-              last: app.globalData.freqall - app.globalData.freq
+              last: res.data.last
             })
           }
         })
@@ -131,7 +130,7 @@ Page({
           'Content-Type': 'application/json'
         },
         success: (res) => {
-          console.log(res)
+          //console.log(res)
           if (res.data.isMatch == true) {
             app.globalData.loged = true;
             that.setData({
