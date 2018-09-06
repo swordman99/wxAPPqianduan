@@ -2,6 +2,7 @@ var app = getApp()
 Page({
   //数据
   data: {
+    nexttime: '',
     alert2: false,
     alert3: false,
     name: '',
@@ -46,7 +47,8 @@ Page({
           data: { openID: app.globalData.openid },
           success: (res) => {
             that.setData({
-              last: res.data.last
+              last: res.data.last,
+              nexttime: res.data.nexttime
             })
           }
         })
@@ -64,9 +66,11 @@ Page({
   alert2: function () {
     this.setData({ alert2: true })
   },
-  //打开公告栏或登陆栏
+  //打开公告栏或注册栏
   openAnnouncement: function () {
-    this.setData({ 'flag.announcement': true })
+    this.setData({
+      'flag.announcement': true
+    })
   },
   //关闭公告栏或登陆栏
   closeAnnouncement: function () {
@@ -94,7 +98,10 @@ Page({
   },
   //打开登陆栏
   log: function (e) {
-    this.setData({ 'flag.log': true })
+    this.setData({
+      'flag.log': true,
+      noinfo: false
+    })
   },
   //打开校内登陆栏
   logStudent: function () {
@@ -105,8 +112,10 @@ Page({
   },
   //打开校外登陆栏
   logOther: function () {
-    this.setData({ 'flag.choose': 2 })
-    sign: 2
+    this.setData({
+      'flag.choose': 2,
+      sign: 2
+    })
   },
   //获取用户信息
   onGotUserInfo: function (e) {

@@ -35,7 +35,7 @@
 		<text class='alert2content'>您尚未填写全部信息\n请按要求填写</text>
   </view>
 	<view class="announcement" id='alert2' wx:else>
-		<text class='alert2content'>您本月挑战次数已达到上限\n请下月继续</text>
+		<text class='alert2content'>您的本轮挑战次数已达到上限\n下轮挑战开始时间：{{nexttime}}</text>
   </view>
 </view>
 <!-- 排行榜 -->
@@ -113,6 +113,6 @@
 			</form>
 		</block>
 		<!--提示语-->
-		<view wx:if="{{flag.alert}}" class='alert'>您的信息与注册时不匹配，请再次填写！</view>
+		<view wx:if="{{flag.alert}}" class='alert'>请检查您的网络连接，并在彻底关闭小程序后重新打开！</view>
 	</view>
 </view>

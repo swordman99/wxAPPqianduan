@@ -385,7 +385,7 @@ page
 .alert
 {
 	position: fixed;
-	top:230rpx;
+	top:225rpx;
 	left:100rpx;
 	color: rgb(252, 79, 11);
 	font-weight: bold;
