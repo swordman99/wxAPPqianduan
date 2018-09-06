@@ -13,6 +13,7 @@ var title = ''
 var op = []
 Page({
   data: {
+    flag: 0,
     time: 0,
     text: false,
     step: 0,
@@ -171,6 +172,7 @@ Page({
           clearInterval(time);
           that.finish();
         } else {
+          //以下这个if好像没什么用
           if (step > n){
             wx.request({
               url: 'https://www.pkusess.club/questionget',
@@ -246,6 +248,9 @@ Page({
   //初始化函数
   init: function (index) {
     var that = this
+    that.setData({
+      flag: that.data.flag + 1
+    })
     //标记正确答案
     if (index == 'a') {
       this.setData({
@@ -264,28 +269,30 @@ Page({
         'color.d': 'white'
       })
     }
+    if(that.data.flag < 10){
     //请求题
-    wx.request({
-      url: 'https://www.pkusess.club/questionget',
-      //url: 'http://127.0.0.1:5000/questionget',
-      method: 'POST',
-      data: { openID: app.globalData.openid },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        that.setData({
-          title: res.data.title, //题目
-          op: res.data.op, //选项列表
-          num: res.data.num - app.globalData.num
-        })
-      },
-      fail: (res) => {
-        that.setData({
-          title: '网络请求繁忙，请稍后重试'
-        })
-      }
-    });
+      wx.request({
+        url: 'https://www.pkusess.club/questionget',
+        //url: 'http://127.0.0.1:5000/questionget',
+        method: 'POST',
+        data: { openID: app.globalData.openid },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: (res) => {
+          that.setData({
+            title: res.data.title, //题目
+            op: res.data.op, //选项列表
+            num: res.data.num - app.globalData.num
+          })
+        },
+        fail: (res) => {
+          that.setData({
+            title: '网络请求繁忙，请稍后重试'
+          })
+        }
+      });
+    }
     //停留一秒
     var t = new Date().getTime();
 
