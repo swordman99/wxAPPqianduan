@@ -23,8 +23,8 @@ Page({
       })
       if (app.globalData.code != '') {
         wx.request({
-          url: 'https://www.pkusess.club/openid',
-          //url: 'http://127.0.0.1:5000/openid',
+          //url: 'https://www.pkusess.club/openid',
+          url: 'http://127.0.0.1:5000/openid',
           method: 'POST',
           data: { 'code': app.globalData.code },
           success: (res) => {
@@ -50,8 +50,8 @@ Page({
         })
         if (app.globalData.code != '') {
           wx.request({
-            url: 'https://www.pkusess.club/openid',
-            //url: 'http://127.0.0.1:5000/openid',
+            //url: 'https://www.pkusess.club/openid',
+            url: 'http://127.0.0.1:5000/openid',
             method: 'POST',
             data: { 'code': app.globalData.code },
             success: (res) => {
@@ -79,8 +79,8 @@ Page({
           })
           if (app.globalData.code != '') {
             wx.request({
-              url: 'https://www.pkusess.club/openid',
-              //url: 'http://127.0.0.1:5000/openid',
+              //url: 'https://www.pkusess.club/openid',
+              url: 'http://127.0.0.1:5000/openid',
               method: 'POST',
               data: { 'code': app.globalData.code },
               success: (res) => {
@@ -108,8 +108,8 @@ Page({
     })
     if (app.globalData.code != '' && app.globalData.userInfo != '') {
       wx.request({
-        url: 'https://www.pkusess.club/openid',
-        //url: 'http://127.0.0.1:5000/openid',
+        //url: 'https://www.pkusess.club/openid',
+        url: 'http://127.0.0.1:5000/openid',
         method: 'POST',
         data: { 'code': app.globalData.code },
         success: (res) => {

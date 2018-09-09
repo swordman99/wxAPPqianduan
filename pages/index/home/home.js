@@ -22,8 +22,8 @@ Page({
   onLoad: function () {
     var that = this;
     wx.request({
-      url: 'https://www.pkusess.club/home',
-      //url: 'http://127.0.0.1:5000/home',
+      //url: 'https://www.pkusess.club/home',
+      url: 'http://127.0.0.1:5000/home',
       method: 'POST',
       data:{
         'openID': app.globalData.openid,
@@ -41,8 +41,8 @@ Page({
         })
         app.globalData.num = res.data.num
         wx.request({
-          url: 'https://www.pkusess.club/getfreq',
-          //url: 'http://127.0.0.1:5000/getfreq',
+          //url: 'https://www.pkusess.club/getfreq',
+          url: 'http://127.0.0.1:5000/getfreq',
           method: 'POST',
           data: { openID: app.globalData.openid },
           success: (res) => {
@@ -126,8 +126,8 @@ Page({
     var that = this;
     if ((e.detail.value.name != '' && e.detail.value.phone != '' && e.detail.value.num != '' && that.data.sign == 1) || (e.detail.value.phone != '' && that.data.sign == 2)) {
       wx.request({
-        url: 'https://www.pkusess.club/login',
-        //url: 'http://127.0.0.1:5000/login',
+        //url: 'https://www.pkusess.club/login',
+        url: 'http://127.0.0.1:5000/login',
         method: 'POST',
         data: {
           'userInfo': app.globalData.userInfo,
@@ -140,8 +140,8 @@ Page({
         },
         success: (res) => {
           wx.request({
-            url: 'https://www.pkusess.club/getfreq',
-            //url: 'http://127.0.0.1:5000/getfreq',
+            //url: 'https://www.pkusess.club/getfreq',
+            url: 'http://127.0.0.1:5000/getfreq',
             method: 'POST',
             data: { openID: app.globalData.openid },
             success: (res) => {

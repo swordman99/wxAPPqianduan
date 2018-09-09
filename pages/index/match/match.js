@@ -38,8 +38,8 @@ Page({
     //接收总数
     var that = this;
     wx.request({
-      url: 'https://www.pkusess.club/finish',
-      //url: 'http://127.0.0.1:5000/finish',
+      //url: 'https://www.pkusess.club/finish',
+      url: 'http://127.0.0.1:5000/finish',
       data: {
         openID: app.globalData.openid,
         flag: 'finish'
@@ -111,8 +111,8 @@ Page({
     }
     //更新挑战次数
     wx.request({
-      url: 'https://www.pkusess.club/setfreq',
-      //url: 'http://127.0.0.1:5000/setfreq',
+      //url: 'https://www.pkusess.club/setfreq',
+      url: 'http://127.0.0.1:5000/setfreq',
       method: 'POST',
       data: { openID: app.globalData.openid },
       success: (res) => {
@@ -121,8 +121,8 @@ Page({
     })
     //请求题(请求后端发一道题)
     wx.request({
-      url: 'https://www.pkusess.club/questionget',
-      //url: 'http://127.0.0.1:5000/questionget',
+      //url: 'https://www.pkusess.club/questionget',
+      url: 'http://127.0.0.1:5000/questionget',
       method: 'POST',
       data: { openID: app.globalData.openid },
       header: {
@@ -172,11 +172,10 @@ Page({
           clearInterval(time);
           that.finish();
         } else {
-          //以下这个if好像没什么用
           if (step > n){
             wx.request({
-              url: 'https://www.pkusess.club/questionget',
-              //url: 'http://127.0.0.1:5000/questionget',
+              //url: 'https://www.pkusess.club/questionget',
+              url: 'http://127.0.0.1:5000/questionget',
               method: 'POST',
               data: { openID: app.globalData.openid },
               header: {
@@ -272,8 +271,8 @@ Page({
     if(that.data.flag < 10){
     //请求题
       wx.request({
-        url: 'https://www.pkusess.club/questionget',
-        //url: 'http://127.0.0.1:5000/questionget',
+        //url: 'https://www.pkusess.club/questionget',
+        url: 'http://127.0.0.1:5000/questionget',
         method: 'POST',
         data: { openID: app.globalData.openid },
         header: {
@@ -322,8 +321,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'a', //用户选项
@@ -358,8 +357,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'b',
@@ -394,8 +393,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'c',
@@ -430,8 +429,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'd',
