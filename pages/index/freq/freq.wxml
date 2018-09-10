@@ -1,3 +1,0 @@
-<!--pages/index/freq/freq.wxml-->
-<view class='white'>这是您的第{{freq}}次挑战\n</view>
-<view class='white'>还剩余{{last}}次</view>
