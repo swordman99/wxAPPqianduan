@@ -23,7 +23,7 @@
 	<navigator open-type='redirect' url='../match/match' class="begin" hover-class="button-hover" hover-stay-time="2000" wx:else>开始挑战</navigator>
 	<view wx:if="{{flag.loged}}" class="log">登录成功</view>
 	<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bind:tap="log" class="log" hover-class="button-hover" hover-stay-time="2000" wx:else>点击注册</button>
-	<view bind:tap="openAnnouncement" class="openAnnouncement">公告</view>
+	<view bind:tap="openAnnouncement" class="openAnnouncement" style='background-color:rgb({{flash[0]}}, {{flash[1]}}, {{flash[2]}})'>公告</view>
 </view>
 <!--提示栏-->
 <view wx:if="{{alert2}}">

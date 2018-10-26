@@ -1,10 +1,10 @@
 var app = getApp()
+var flashStation = 'up'
 Page({
   //数据
   data: {
     nexttime: '',
     alert2: false,
-    alert3: false,
     name: '',
     phone: '',
     stuentnum: '',
@@ -16,51 +16,83 @@ Page({
     rank: ['---', '---'],
     last: '---',
     color: ['rgb(100,100,100)', 'rgb(20,20,20)'],
+    flash: [50, 50, 0],
     flag: { global: true, announcement: false, log: false, choose: 0, loged: false, alert: false, submited: false }
   },
   //初始登录数据
   onLoad: function () {
-    var that = this;
+    var that = this
+    function flashAnimation() {
+      setTimeout(function () {
+        var flash = that.data.flash
+        if (flashStation == 'up' && flash[0] < 255) {
+          flash = [flash[0] + 1, flash[1] + 1, flash[2]];
+          that.setData({
+            flash: flash,
+          });
+        } else if (flashStation == 'up' && flash[0] == 255) {
+          flashStation = 'down';
+        } else if (flashStation == 'down' && flash[0] > 50) {
+          flash = [flash[0] - 1, flash[1] - 1, flash[2]];
+          that.setData({
+            flash: flash,
+          });
+        } else {
+          flashStation = 'up';
+        };
+        flashAnimation();
+      }, 15);
+    }
+    flashAnimation();
     wx.request({
-      url: 'https://www.pkusess.club/home',
-      //url: 'http://127.0.0.1:5000/home',
+      url: 'https://www.pkusess.club/openid',
+      //url: 'http://127.0.0.1:5000/openid',
       method: 'POST',
-      data:{
-        'openID': app.globalData.openid,
-        'userInfo': app.globalData.userInfo
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({ 
-          'flag.loged': res.data.loged,
-          init: res.data.init,
-          rank: res.data.rank,
-          num: res.data.num
-        })
-        app.globalData.num = res.data.num
+      data: { 'code': app.globalData.code },
+      success: (res) => {
+        app.globalData.openid = res.data.openID;
         wx.request({
-          url: 'https://www.pkusess.club/getfreq',
-          //url: 'http://127.0.0.1:5000/getfreq',
+          url: 'https://www.pkusess.club/home',
+          //url: 'http://127.0.0.1:5000/home',
           method: 'POST',
-          data: { openID: app.globalData.openid },
-          success: (res) => {
+          data: {
+            'openID': app.globalData.openid,
+            'userInfo': app.globalData.userInfo
+          },
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success: function (res) {
             that.setData({
-              last: res.data.last,
-              nexttime: res.data.nexttime
+              'flag.loged': res.data.loged,
+              init: res.data.init,
+              rank: res.data.rank,
+              num: res.data.num
+            })
+            app.globalData.num = res.data.num
+            wx.request({
+              url: 'https://www.pkusess.club/getfreq',
+              //url: 'http://127.0.0.1:5000/getfreq',
+              method: 'POST',
+              data: { openID: app.globalData.openid },
+              success: (res) => {
+                that.setData({
+                  last: res.data.last,
+                  nexttime: res.data.nexttime
+                })
+                if (app.globalData.loged) {
+                  that.setData({
+                    'flag.announcement': false,
+                    'flag.loged': true,
+                    'flag.log': false
+                  })
+                }
+              }
             })
           }
-        })
+        });
       }
-    });
-    if(app.globalData.loged){
-      that.setData({
-        'flag.announcement': false,
-        'flag.loged': true,
-        'flag.log': false
-      })
-    }
+    })
   },
   //提示尚未登录
   alert2: function () {
@@ -154,7 +186,7 @@ Page({
           if (res.data.isMatch == true) {
             app.globalData.loged = true;
             that.setData({
-              'flag.announcement': false,
+              'flag.announcement': true,
               'flag.log': false,
               'flag.choose': 0,
               'flag.alert': false,
