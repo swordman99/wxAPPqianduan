@@ -34,8 +34,11 @@
   <view class="announcement" id='alert2' wx:elif='{{noinfo == true}}'>
 		<text class='alert2content'>您尚未填写全部信息\n请按要求填写</text>
   </view>
-	<view class="announcement" id='alert2' wx:else>
+	<view class="announcement" id='alert2' wx:elif='{{share == flase}}'>
 		<text class='alert2content'>您的本轮挑战次数已达到上限\n下轮挑战开始时间：{{nexttime}}</text>
+  </view>
+  <view class="announcement" id='alert2' wx:elif='{{share == true}}'>
+		<text class='alert2content'>分享成功！分数+1！</text>
   </view>
 </view>
 <!-- 排行榜 -->

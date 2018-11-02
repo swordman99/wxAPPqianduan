@@ -44,55 +44,100 @@ Page({
       }, 15);
     }
     flashAnimation();
-    wx.request({
-      url: 'https://www.pkusess.club/openid',
-      //url: 'http://127.0.0.1:5000/openid',
-      method: 'POST',
-      data: { 'code': app.globalData.code },
-      success: (res) => {
-        app.globalData.openid = res.data.openID;
-        wx.request({
-          url: 'https://www.pkusess.club/home',
-          //url: 'http://127.0.0.1:5000/home',
-          method: 'POST',
-          data: {
-            'openID': app.globalData.openid,
-            'userInfo': app.globalData.userInfo
-          },
-          header: {
-            'Content-Type': 'application/json'
-          },
-          success: function (res) {
-            that.setData({
-              'flag.loged': res.data.loged,
-              init: res.data.init,
-              rank: res.data.rank,
-              num: res.data.num
-            })
-            app.globalData.num = res.data.num
-            wx.request({
-              url: 'https://www.pkusess.club/getfreq',
-              //url: 'http://127.0.0.1:5000/getfreq',
-              method: 'POST',
-              data: { openID: app.globalData.openid },
-              success: (res) => {
-                that.setData({
-                  last: res.data.last,
-                  nexttime: res.data.nexttime
-                })
-                if (app.globalData.loged) {
+    if(app.globalData.first == 0){
+      app.globalData.first=1
+      wx.request({
+        //url: 'https://www.pkusess.club/openid',
+        url: 'http://127.0.0.1:5000/openid',
+        method: 'POST',
+        data: { 'code': app.globalData.code },
+        success: (res) => {
+          app.globalData.openid = res.data.openID;
+          wx.request({
+            //url: 'https://www.pkusess.club/home',
+            url: 'http://127.0.0.1:5000/home',
+            method: 'POST',
+            data: {
+              'openID': app.globalData.openid,
+              'userInfo': app.globalData.userInfo
+            },
+            header: {
+              'Content-Type': 'application/json'
+            },
+            success: function (res) {
+              that.setData({
+                'flag.loged': res.data.loged,
+                init: res.data.init,
+                rank: res.data.rank,
+                num: res.data.num
+              })
+              app.globalData.num = res.data.num
+              wx.request({
+                //url: 'https://www.pkusess.club/getfreq',
+                url: 'http://127.0.0.1:5000/getfreq',
+                method: 'POST',
+                data: { openID: app.globalData.openid },
+                success: (res) => {
                   that.setData({
-                    'flag.announcement': false,
-                    'flag.loged': true,
-                    'flag.log': false
+                    last: res.data.last,
+                    nexttime: res.data.nexttime
                   })
+                  if (app.globalData.loged) {
+                    that.setData({
+                      'flag.announcement': false,
+                      'flag.loged': true,
+                      'flag.log': false
+                    })
+                  }
                 }
+              })
+            }
+          });
+        }
+      })
+    }
+    else{
+      wx.request({
+        //url: 'https://www.pkusess.club/home',
+        url: 'http://127.0.0.1:5000/home',
+        method: 'POST',
+        data: {
+          'openID': app.globalData.openid,
+          'userInfo': app.globalData.userInfo
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          that.setData({
+            'flag.loged': res.data.loged,
+            init: res.data.init,
+            rank: res.data.rank,
+            num: res.data.num
+          })
+          app.globalData.num = res.data.num
+          wx.request({
+            //url: 'https://www.pkusess.club/getfreq',
+            url: 'http://127.0.0.1:5000/getfreq',
+            method: 'POST',
+            data: { openID: app.globalData.openid },
+            success: (res) => {
+              that.setData({
+                last: res.data.last,
+                nexttime: res.data.nexttime
+              })
+              if (app.globalData.loged) {
+                that.setData({
+                  'flag.announcement': false,
+                  'flag.loged': true,
+                  'flag.log': false
+                })
               }
-            })
-          }
-        });
-      }
-    })
+            }
+          })
+        }
+      });
+    }
   },
   //提示尚未登录
   alert2: function () {
@@ -158,8 +203,8 @@ Page({
     var that = this;
     if ((e.detail.value.name != '' && e.detail.value.phone != '' && e.detail.value.num != '' && that.data.sign == 1) || (e.detail.value.phone != '' && that.data.sign == 2)) {
       wx.request({
-        url: 'https://www.pkusess.club/login',
-        //url: 'http://127.0.0.1:5000/login',
+        //url: 'https://www.pkusess.club/login',
+        url: 'http://127.0.0.1:5000/login',
         method: 'POST',
         data: {
           'userInfo': app.globalData.userInfo,
@@ -172,8 +217,8 @@ Page({
         },
         success: (res) => {
           wx.request({
-            url: 'https://www.pkusess.club/getfreq',
-            //url: 'http://127.0.0.1:5000/getfreq',
+            //url: 'https://www.pkusess.club/getfreq',
+            url: 'http://127.0.0.1:5000/getfreq',
             method: 'POST',
             data: { openID: app.globalData.openid },
             success: (res) => {

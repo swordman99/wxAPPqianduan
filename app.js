@@ -40,6 +40,6 @@ App({
     loged: false,
     num: 0,
     freq:0,
-    freqall: 5
+    first: 0
   }
 })
