@@ -31,14 +31,17 @@
 	<view class="announcement" id='alert2' wx:if='{{flag.loged == false && noinfo == false}}'>
 		<text class='alert2content'>您尚未登录\n请先登录再答题</text>
   </view>
-  <view class="announcement" id='alert2' wx:elif='{{noinfo == true}}'>
+  <view class="announcement" id='alert2' wx:elif='{{flag.loged == false && noinfo == true}}'>
 		<text class='alert2content'>您尚未填写全部信息\n请按要求填写</text>
   </view>
-	<view class="announcement" id='alert2' wx:elif='{{share == flase}}'>
+	<view class="announcement" id='alert2' wx:elif='{{flag.loged == true && noinfo == false}}'>
 		<text class='alert2content'>您的本轮挑战次数已达到上限\n下轮挑战开始时间：{{nexttime}}</text>
   </view>
-  <view class="announcement" id='alert2' wx:elif='{{share == true}}'>
-		<text class='alert2content'>分享成功！分数+1！</text>
+</view>
+<view wx:if="{{share}}">
+	<view class="announcementPage" bindtap='closeAnnouncement'></view>
+	<view class="announcement" id='alert2' wx:if='{{true}}'>
+		<text class='alert2content'>分享成功！\n下次首题得分加倍！</text>
   </view>
 </view>
 <!-- 排行榜 -->
