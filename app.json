@@ -9,6 +9,8 @@
     "backgroundTextStyle": "bold",
     "navigationBarBackgroundColor": "#08083b",
     "navigationBarTitleText": "地学知识竞赛",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+     "onReachBottomDistance": 50
   }
 }

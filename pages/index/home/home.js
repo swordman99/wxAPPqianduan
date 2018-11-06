@@ -159,6 +159,11 @@ Page({
         }
       }
     })
+    return {
+      title: '地学知识竞赛',
+      desc: '大家都在玩的知识竞赛小游戏！',
+      path: '/pages/index/load/load'
+    }
   },
   //提示尚未登录
   alert2: function () {
@@ -288,7 +293,50 @@ Page({
     }
   },
   onPullDownRefresh: function () {
-    this.onLoad();
+    var that = this;
+    wx.request({
+      url: 'https://www.pkusess.club/home',
+      //url: 'http://127.0.0.1:5000/home',
+      method: 'POST',
+      data: {
+        'openID': app.globalData.openid,
+        'userInfo': app.globalData.userInfo
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          'flag.loged': res.data.loged,
+          init: res.data.init,
+          rank: res.data.rank,
+          num: res.data.num,
+          alert2: false,
+          noinfo: false,
+          share: false
+        })
+        app.globalData.num = res.data.num
+        wx.request({
+          url: 'https://www.pkusess.club/getfreq',
+          //url: 'http://127.0.0.1:5000/getfreq',
+          method: 'POST',
+          data: { openID: app.globalData.openid },
+          success: (res) => {
+            that.setData({
+              last: res.data.last,
+              nexttime: res.data.nexttime
+            })
+            if (app.globalData.loged) {
+              that.setData({
+                'flag.announcement': false,
+                'flag.loged': true,
+                'flag.log': false
+              })
+            }
+          }
+        })
+      }
+    });
     wx.stopPullDownRefresh()
   }
 })
