@@ -40,6 +40,9 @@ App({
     loged: false,
     num: 0,
     freq:0,
-    first: 0
+    first: 0,
+    timeid: 0,
+    timeid1: 0,
+    timeid2: 0
   }
 })

@@ -13,7 +13,7 @@
         <view wx:elif="{{num <= 30}}">大佬大佬，给个好友位吧！</view>
 		    <view wx:elif="{{num >= 30}}">巨神orz，答穿答题墙！</view>
 	    </view>
-	   	<navigator open-type='redirect' url='../home/home' class="return" hover-class="button-hover" hover-stay-time="2000">返回主页</navigator>
+	   	<view class="return" hover-class="button-hover" hover-stay-time="2000" bindtap='backhome'>返回主页</view>
 	</view>
 </view>
 <!--主体-->

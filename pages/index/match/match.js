@@ -61,7 +61,7 @@ Page({
     top = 90 - processHeight
     //弹出总结框
     function numAnimation() {
-      setTimeout(function () {
+      app.globalData.timeid1 = setTimeout(function () {
         var step = that.data.step + 1;
         if (step == that.data.num + 1) {
           that.setData({
@@ -90,7 +90,7 @@ Page({
     const that = this;
     //开场倒计时函数
     function countdownEvent() {
-      setTimeout(function () {
+      app.globalData.timeid2 = setTimeout(function () {
         var second = that.data.countdown - 1;
         if (second == 0) {
           that.setData({
@@ -100,6 +100,7 @@ Page({
             time: 1
           });
           that.secondBegin();
+          clearTimeout(app.globalData.timeid2)
           return;
         } else {
           that.setData({
@@ -169,7 +170,7 @@ Page({
       } else {
         // 十道题结束
         if (count == sum) {
-          clearInterval(time);
+          //clearInterval(time);
           that.finish();
         } else {
           if (step > n){
@@ -243,6 +244,7 @@ Page({
     ringMove(start, end);
     // 创建倒计时
     time = setInterval(animation, 1000);
+    app.globalData.timeid = time
   },
   //初始化函数
   init: function (index) {
@@ -457,6 +459,14 @@ Page({
         this.init(index)
       }
     });
+  },
+  backhome: function(){
+    clearTimeout(app.globalData.timeid1)
+    clearTimeout(app.globalData.timeid2)
+    clearInterval(app.globalData.timeid)
+    wx.redirectTo({
+      url: '../home/home',
+    })
   }
 })
 //2.home页面onshow方法更新数据 4.排行榜

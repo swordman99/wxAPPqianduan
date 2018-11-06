@@ -27,25 +27,9 @@ Page({
       withShareTicket: true
     })
     function flashAnimation() {
-      setTimeout(function () {
-        var flash = that.data.flash
-        if (flashStation == 'up' && flash[0] < 255) {
-          flash = [flash[0] + 1, flash[1] + 1, flash[2]];
-          that.setData({
-            flash: flash,
-          });
-        } else if (flashStation == 'up' && flash[0] == 255) {
-          flashStation = 'down';
-        } else if (flashStation == 'down' && flash[0] > 50) {
-          flash = [flash[0] - 1, flash[1] - 1, flash[2]];
-          that.setData({
-            flash: flash,
-          });
-        } else {
-          flashStation = 'up';
-        };
-        flashAnimation();
-      }, 15);
+      that.setData({
+        flash: [255, 255, 0]
+      })
     }
     flashAnimation();
     if(app.globalData.first == 0){
@@ -292,8 +276,13 @@ Page({
       })
     }
   },
+  begintest: function(){
+    wx.redirectTo({
+      url: '../match/match',
+    })
+  },
   onPullDownRefresh: function () {
-    var that = this;
+    var that = this
     wx.request({
       url: 'https://www.pkusess.club/home',
       //url: 'http://127.0.0.1:5000/home',
