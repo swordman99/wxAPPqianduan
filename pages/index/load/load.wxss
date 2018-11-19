@@ -1,6 +1,6 @@
 page
 {
-	background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532499522846&di=74dd8189d8661f3e3719971018b3d8c8&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170108%2F9023941c26e844ff9381461af1a0347f_th.jpg');
+	background-image: url('https://photo.16pic.com/00/33/99/16pic_3399189_b.jpg');
 	background-size: cover;
 }
 .userinfo {

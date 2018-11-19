@@ -35,6 +35,8 @@ Page({
   },
   //结束函数
   finish: function () {
+    clearTimeout(app.globalData.timeid2)
+    clearInterval(app.globalData.timeid)
     //接收总数
     var that = this;
     wx.request({
@@ -153,7 +155,7 @@ Page({
       start = 1.5 * Math.PI, // 开始的弧度
       end = -0.5 * Math.PI, // 结束的弧度
       time = null, // 计时器容器
-      n = 15, // 当前倒计时为15秒
+      n = 3, // 当前倒计时为15秒
       rpx;
     //获取rpx参数
     wx.getSystemInfo({
@@ -186,7 +188,8 @@ Page({
                 that.setData({
                   title: res.data.title, //题目
                   op: res.data.op, //选项列表
-                  num: res.data.num - app.globalData.num
+                  num: res.data.num - app.globalData.num,
+                  flag: that.data.flag + 1
                 })
               },
               fail: (res) => {
