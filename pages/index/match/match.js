@@ -40,8 +40,8 @@ Page({
     //接收总数
     var that = this;
     wx.request({
-      url: 'https://www.pkusess.club/finish',
-      //url: 'http://127.0.0.1:5000/finish',
+      //url: 'https://www.pkusess.club/finish',
+      url: 'http://127.0.0.1:5000/finish',
       data: {
         openID: app.globalData.openid,
         flag: 'finish'
@@ -114,8 +114,8 @@ Page({
     }
     //更新挑战次数
     wx.request({
-      url: 'https://www.pkusess.club/setfreq',
-      //url: 'http://127.0.0.1:5000/setfreq',
+      //url: 'https://www.pkusess.club/setfreq',
+      url: 'http://127.0.0.1:5000/setfreq',
       method: 'POST',
       data: { openID: app.globalData.openid },
       success: (res) => {
@@ -123,27 +123,29 @@ Page({
       }
     })
     //请求题(请求后端发一道题)
-    wx.request({
-      url: 'https://www.pkusess.club/questionget',
-      //url: 'http://127.0.0.1:5000/questionget',
-      method: 'POST',
-      data: { openID: app.globalData.openid },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        this.setData({
-          title: res.data.title, //题目
-          op: res.data.op, //选项列表
-          num: res.data.num - app.globalData.num
-        })
-      },
-      fail: (res) => {
-        that.setData({
-          title: '网络请求繁忙，请稍后重试'
-        })
-      }
-    });
+    if (that.data.finish != true){
+      wx.request({
+        //url: 'https://www.pkusess.club/questionget',
+        url: 'http://127.0.0.1:5000/questionget',
+        method: 'POST',
+        data: { openID: app.globalData.openid },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: (res) => {
+          this.setData({
+            title: res.data.title, //题目
+            op: res.data.op, //选项列表
+            num: res.data.num - app.globalData.num
+          })
+        },
+        fail: (res) => {
+          that.setData({
+            title: '网络请求繁忙，请稍后重试'
+          })
+        }
+      });
+    }
     //开场倒计时
     countdownEvent()
   },
@@ -155,7 +157,7 @@ Page({
       start = 1.5 * Math.PI, // 开始的弧度
       end = -0.5 * Math.PI, // 结束的弧度
       time = null, // 计时器容器
-      n = 3, // 当前倒计时为15秒
+      n = 15, // 当前倒计时为15秒
       rpx;
     //获取rpx参数
     wx.getSystemInfo({
@@ -175,10 +177,10 @@ Page({
           //clearInterval(time);
           that.finish();
         } else {
-          if (step > n){
+          if (step > n && that.data.finish != true){
             wx.request({
-              url: 'https://www.pkusess.club/questionget',
-              //url: 'http://127.0.0.1:5000/questionget',
+              //url: 'https://www.pkusess.club/questionget',
+              url: 'http://127.0.0.1:5000/questionget',
               method: 'POST',
               data: { openID: app.globalData.openid },
               header: {
@@ -188,8 +190,7 @@ Page({
                 that.setData({
                   title: res.data.title, //题目
                   op: res.data.op, //选项列表
-                  num: res.data.num - app.globalData.num,
-                  flag: that.data.flag + 1
+                  num: res.data.num - app.globalData.num
                 })
               },
               fail: (res) => {
@@ -273,11 +274,11 @@ Page({
         'color.d': 'white'
       })
     }
-    if(that.data.flag < 10){
+    if(that.data.flag < 10 && that.data.finish!=true){
     //请求题
       wx.request({
-        url: 'https://www.pkusess.club/questionget',
-        //url: 'http://127.0.0.1:5000/questionget',
+        //url: 'https://www.pkusess.club/questionget',
+        url: 'http://127.0.0.1:5000/questionget',
         method: 'POST',
         data: { openID: app.globalData.openid },
         header: {
@@ -326,8 +327,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'a', //用户选项
@@ -362,8 +363,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'b',
@@ -398,8 +399,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'c',
@@ -434,8 +435,8 @@ Page({
     const that = this;
     //发送用户选项，返回judge和currentOp
     wx.request({
-      url: 'https://www.pkusess.club/questionjudge',
-      //url: 'http://127.0.0.1:5000/questionjudge',
+      //url: 'https://www.pkusess.club/questionjudge',
+      url: 'http://127.0.0.1:5000/questionjudge',
       data: {
         openID: app.globalData.openid,
         userOp: 'd',
