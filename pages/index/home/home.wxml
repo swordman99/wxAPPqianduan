@@ -35,7 +35,7 @@
 		<text class='alert2content'>您尚未填写全部信息\n请按要求填写</text>
   </view>
 	<view class="announcement" id='alert2' wx:elif='{{flag.loged == true && noinfo == false}}'>
-		<text class='alert2content'>您的本轮挑战次数已达到上限\n下轮挑战开始时间：{{nexttime}}</text>
+		<text class='alert2content'>{{nexttime}}</text>
   </view>
 </view>
 <view wx:if="{{share}}">
