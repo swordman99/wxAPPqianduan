@@ -43,6 +43,7 @@ App({
     first: 0,
     timeid: 0,
     timeid1: 0,
-    timeid2: 0
+    timeid2: 0,
+    num_question: 0
   }
 })

@@ -35,15 +35,15 @@ Page({
     if(app.globalData.first == 0){
       app.globalData.first=1
       wx.request({
-        //url: 'https://www.pkusess.club/openid',
-        url: 'http://127.0.0.1:5000/openid',
+          url: 'https://www.pkusess.club/openid',
+          //url: 'http://127.0.0.1:5000/openid',
         method: 'POST',
         data: { 'code': app.globalData.code },
         success: (res) => {
           app.globalData.openid = res.data.openID;
           wx.request({
-            //url: 'https://www.pkusess.club/home',
-            url: 'http://127.0.0.1:5000/home',
+              url: 'https://www.pkusess.club/home',
+              //url: 'http://127.0.0.1:5000/home',
             method: 'POST',
             data: {
               'openID': app.globalData.openid,
@@ -61,8 +61,8 @@ Page({
               })
               app.globalData.num = res.data.num
               wx.request({
-                //url: 'https://www.pkusess.club/getfreq',
-                url: 'http://127.0.0.1:5000/getfreq',
+                  url: 'https://www.pkusess.club/getfreq',
+                  //url: 'http://127.0.0.1:5000/getfreq',
                 method: 'POST',
                 data: { openID: app.globalData.openid },
                 success: (res) => {
@@ -86,8 +86,8 @@ Page({
     }
     else{
       wx.request({
-        //url: 'https://www.pkusess.club/home',
-        url: 'http://127.0.0.1:5000/home',
+          url: 'https://www.pkusess.club/home',
+          //url: 'http://127.0.0.1:5000/home',
         method: 'POST',
         data: {
           'openID': app.globalData.openid,
@@ -105,8 +105,8 @@ Page({
           })
           app.globalData.num = res.data.num
           wx.request({
-            //url: 'https://www.pkusess.club/getfreq',
-            url: 'http://127.0.0.1:5000/getfreq',
+              url: 'https://www.pkusess.club/getfreq',
+              //url: 'http://127.0.0.1:5000/getfreq',
             method: 'POST',
             data: { openID: app.globalData.openid },
             success: (res) => {
@@ -131,8 +131,8 @@ Page({
   onShareAppMessage: function(res){
     var that = this;
     wx.request({
-      //url: 'https://www.pkusess.club/sharereward',
-      url: 'http://127.0.0.1:5000/sharereward',
+        url: 'https://www.pkusess.club/sharereward',
+        //url: 'http://127.0.0.1:5000/sharereward',
       method: 'POST',
       data: { openID: app.globalData.openid },
       success: (res) => {
@@ -217,8 +217,8 @@ Page({
     var that = this;
     if ((e.detail.value.name != '' && e.detail.value.phone != '' && e.detail.value.num != '' && that.data.sign == 1) || (e.detail.value.phone != '' && that.data.sign == 2)) {
       wx.request({
-        //url: 'https://www.pkusess.club/login',
-        url: 'http://127.0.0.1:5000/login',
+          url: 'https://www.pkusess.club/login',
+          //url: 'http://127.0.0.1:5000/login',
         method: 'POST',
         data: {
           'userInfo': app.globalData.userInfo,
@@ -231,8 +231,8 @@ Page({
         },
         success: (res) => {
           wx.request({
-            //url: 'https://www.pkusess.club/getfreq',
-            url: 'http://127.0.0.1:5000/getfreq',
+              url: 'https://www.pkusess.club/getfreq',
+              //url: 'http://127.0.0.1:5000/getfreq',
             method: 'POST',
             data: { openID: app.globalData.openid },
             success: (res) => {
@@ -284,8 +284,8 @@ Page({
   onPullDownRefresh: function () {
     var that = this
     wx.request({
-      //url: 'https://www.pkusess.club/home',
-      url: 'http://127.0.0.1:5000/home',
+        url: 'https://www.pkusess.club/home',
+        //url: 'http://127.0.0.1:5000/home',
       method: 'POST',
       data: {
         'openID': app.globalData.openid,
@@ -306,8 +306,8 @@ Page({
         })
         app.globalData.num = res.data.num
         wx.request({
-          //url: 'https://www.pkusess.club/getfreq',
-          url: 'http://127.0.0.1:5000/getfreq',
+            url: 'https://www.pkusess.club/getfreq',
+            //url: 'http://127.0.0.1:5000/getfreq',
           method: 'POST',
           data: { openID: app.globalData.openid },
           success: (res) => {
