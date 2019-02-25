@@ -1,5 +1,6 @@
 <!-- 顶栏 -->
 <view class="topcolumn">
+  <button open-type="contact" />
 	<!--用户信息-->
 	<view class="userInfo">
 		<view class="userinfo-avatar">
