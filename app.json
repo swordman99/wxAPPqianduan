@@ -6,7 +6,7 @@
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "bold",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#08083b",
     "navigationBarTitleText": "地学知识竞赛",
     "navigationBarTextStyle": "white"
