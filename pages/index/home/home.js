@@ -7,7 +7,7 @@ Page({
     alert2: false,
     noinfo: false,
     share: false,
-    name: '',
+    name:'',
     phone: '',
     stuentnum: '',
     sign: 0,
@@ -23,6 +23,7 @@ Page({
   //初始登录数据
   onLoad: function () {
     var that = this;
+    app.globalData.num_question=0
     wx.showShareMenu({
       withShareTicket: true
     })

@@ -124,6 +124,7 @@ Page({
     })
     //请求题(请求后端发一道题)
     if (that.data.finish != true && app.globalData.num_question<10){
+      console.log('hello')
       wx.request({
         url: 'https://www.pkusess.club/questionget',
         //url: 'http://127.0.0.1:5000/questionget',
